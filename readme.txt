@@ -41,7 +41,10 @@ After logging in, the script automatically switches to "Play" mode. When logging
 
 DEUTSCHE VERSION
 
-Informationen zum WoW-Menü Skript
+WICHTIG:
+Du muss die _Inhalte_ des Ordners "ToInterface" (nur die Inhalte, nicht den ordner selbst!) in den "Interface"-Ordner in deinem Warcraft-Installationsverzeichnis kopieren.
+Auf den meisten Computern findest du den "Interface"-Ordner unter "C:\Program Files (x86)\World of Warcraft\_classic_\Interface"
+Achtung: Du musst in den Ordner "Interface" kopieren. Nicht in den "AddOns"-Ordner!
 
 1. Was macht das Skript?
 
