@@ -1,4 +1,4 @@
-Release: 2.5
+Release: 2.7
 
 IMPORTANT SET UP STEPS. DO THIS:
 1. Copy the folder "wow_menu" from the downloaded .zip file to the folder "AddOns". ("C:\Program Files (x86)\World of Warcraft\_classic_\Interface\AddOns") Overwrite any existing files and folders.

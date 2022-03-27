@@ -1,5 +1,5 @@
 ﻿/*
-Release: 2.5
+Release: 2.7
 */
 
 ;------------------------------------------------------------------------------------------
@@ -372,6 +372,7 @@ ClosePopUps()
 	}
 }
 
+
 ;------------------------------------------------------------------------------------------
 InitMenu:
 	global gCharUIPositions := {1:{x:-45,y:106},2:{x:-45,y:162},3:{x:-45,y:218},4:{x:-45,y:274},5:{x:-45,y:330},6:{x:-45,y:386},7:{x:-45,y:442},8:{x:-45,y:498},9:{x:-45,y:554},10:{x:-45,y:610}}
@@ -408,7 +409,7 @@ InitMenu:
 		gMainMenu.childs[tMainItemN].name := "login_with_selected_char"
 		gMainMenuchilds2Action(this){
 			tRGBColor := GetColorAtUiPos(9918, 705)
-			if (tRGBColor.r = 139 and tRGBColor.g = 139 and tRGBColor.b = 139)
+			if (IsColorRange(tRGBColor.r, 139) = true and IsColorRange(tRGBColor.g, 139) = true and IsColorRange(tRGBColor.b, 139) = true)
 			{
 				gMainMenu.childs[1].onEnter()
 			}
@@ -703,6 +704,19 @@ return
 ;------------------------------------------------------------------------------------------
 ; Checks
 ;------------------------------------------------------------------------------------------
+
+IsColorRange(aTestColorValue, aCompareColorValue)
+{
+	if(aTestColorValue >= (aCompareColorValue - 2) and aTestColorValue <= (aCompareColorValue + 2))
+	{
+		return true
+	}
+	else
+	{
+		return false
+	}
+}
+
 IsWoWWindowFocus()
 {
 	rReturnValue := false
@@ -729,7 +743,7 @@ IsIngame()
 		rReturnValue := true
 	}
 	*/
-	if (tRGBColor.r = 0 and tRGBColor.g = 0 and tRGBColor.b = 255)
+	if (IsColorRange(tRGBColor.r, 0) = true and IsColorRange(tRGBColor.g, 0) = true and IsColorRange(tRGBColor.b, 255) = true)
 	{
 		rReturnValue := true
 	}
@@ -743,7 +757,7 @@ IsIngame()
 		rReturnValue := true
 	}
 	*/
-	if (tRGBColor.r = 0 and tRGBColor.g = 0 and tRGBColor.b = 255)
+	if (IsColorRange(tRGBColor.r, 0) and IsColorRange(tRGBColor.g, 0) and IsColorRange(tRGBColor.b, 255))
 	{
 		rReturnValue := true
 	}
@@ -774,7 +788,7 @@ IsLoginScreenInitialStart()
 	tRGBColorLogo := GetColorAtUiPos(38,72)
 	tRGBColorQuit := GetColorAtUiPos(-23, 717)
 	tRGBColorCreate := GetColorAtUiPos(28, 550)
-	if ((tRGBColorLogo.r = 198 and tRGBColorLogo.g = 227 and tRGBColorLogo.b = 0) = true and (tRGBColorQuit.r = 255 and tRGBColorQuit.g = 0 and tRGBColorQuit.b = 0) = true and (tRGBColorCreate.r = 255 and tRGBColorCreate.g = 0 and tRGBColorCreate.b = 0) = false)
+	if ((IsColorRange(tRGBColorLogo.r, 198) = true and IsColorRange(tRGBColorLogo.g, 227) = true and IsColorRange(tRGBColorLogo.b, 0) = true) = true and (IsColorRange(tRGBColorQuit.r, 255) = true and IsColorRange(tRGBColorQuit.g, 0) = true and IsColorRange(tRGBColorQuit.b, 0) = true) = true and (IsColorRange(tRGBColorCreate.r, 255) = true and IsColorRange(tRGBColorCreate.g, 0) = true and IsColorRange(tRGBColorCreate.b, 0) = true) = false)
 	{
 		rReturnValue := true
 	}
@@ -791,7 +805,7 @@ IsLoginScreen()
 	
 	tRGBColorLogo := GetColorAtUiPos(38,72)
 	tRGBColorQuit := GetColorAtUiPos(-23, 717)
-	if ((tRGBColorLogo.r = 198 and tRGBColorLogo.g = 227 and tRGBColorLogo.b = 0) and (tRGBColorQuit.r = 255 and tRGBColorQuit.g = 0 and tRGBColorQuit.b = 0))
+	if ((IsColorRange(tRGBColorLogo.r, 198) = true and IsColorRange(tRGBColorLogo.g, 227) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorQuit.r, 255) = true and IsColorRange(tRGBColorQuit.g, 0) = true and IsColorRange(tRGBColorQuit.b, 0) = true))
 	{
 		rReturnValue := true
 	}
@@ -808,7 +822,8 @@ IsCharSelectionScreen()
 	
 	tRGBColorLogo := GetColorAtUiPos(38,72)
 	tRGBColorAddons := GetColorAtUiPos(49, 722)
-	if ((tRGBColorLogo.r = 198 and tRGBColorLogo.g = 227 and tRGBColorLogo.b = 0) and (tRGBColorAddons.r = 255 and tRGBColorAddons.g = 0 and tRGBColorAddons.b = 0))
+	
+	if ((IsColorRange(tRGBColorLogo.r, 198) = true and IsColorRange(tRGBColorLogo.g, 227) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorAddons.r, 255) = true and IsColorRange(tRGBColorAddons.g, 0) = true and IsColorRange(tRGBColorAddons.b, 0) = true))
 	{
 		rReturnValue := true
 	}
@@ -825,7 +840,7 @@ IsCharCreationScreen()
 	
 	tRGBColorLogo := GetColorAtUiPos(54, 11)
 	tRGBColorRCBackdrop := GetColorAtUiPos(52, 417)
-	if ((tRGBColorLogo.r = 198 and tRGBColorLogo.g = 227 and tRGBColorLogo.b = 0) and (tRGBColorRCBackdrop.r = 0 and tRGBColorRCBackdrop.g = 0 and tRGBColorRCBackdrop.b = 0))
+	if ((IsColorRange(tRGBColorLogo.r, 198) = true and IsColorRange(tRGBColorLogo.g, 227) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorRCBackdrop.r, 0) = true and IsColorRange(tRGBColorRCBackdrop.g, 0) = true and IsColorRange(tRGBColorRCBackdrop.b, 0) = true))
 	{
 		rReturnValue := true
 	}
@@ -842,7 +857,7 @@ IsRealmSelectionScreen()
 	
 	tRGBColorTitleBackdrop := GetColorAtUiPos(9952, 126)
 	tRGBColorListBackdrop := GetColorAtUiPos(404, 145)
-	if ((tRGBColorTitleBackdrop.r = 0 and tRGBColorTitleBackdrop.g = 56 and tRGBColorTitleBackdrop.b = 0) and (tRGBColorListBackdrop.r = 40 and tRGBColorListBackdrop.g = 0 and tRGBColorListBackdrop.b = 0))
+	if ((IsColorRange(tRGBColorTitleBackdrop.r, 0) = true and IsColorRange(tRGBColorTitleBackdrop.g, 56) = true and IsColorRange(tRGBColorTitleBackdrop.b, 0) = true) and (IsColorRange(tRGBColorListBackdrop.r, 40) = true and IsColorRange(tRGBColorListBackdrop.g, 0) = true and IsColorRange(tRGBColorListBackdrop.b, 0) = true))
 	{
 		rReturnValue := true
 	}
@@ -860,7 +875,7 @@ IsHighPopServerWarning()
 	rReturnValue := false
 
 	tRGBColor := GetColorAtUiPos(9799, 436)
-	if (tRGBColor.r = 255 and tRGBColor.g = 0 and tRGBColor.b = 0)
+	if (IsColorRange(tRGBColor.r, 255) = true and IsColorRange(tRGBColor.g, 0) = true and IsColorRange(tRGBColor.b, 0) = true)
 	{
 		rReturnValue := true
 	}
@@ -921,7 +936,7 @@ Is12Popup()
 
 	tRGBColorLeft := GetColorAtUiPos(9802, 397)
 	tRGBColorRight := GetColorAtUiPos(10196, 397)
-	if((tRGBColorLeft.r = 255 and tRGBColorLeft.g = 0 and tRGBColorLeft.b = 0) and (tRGBColorRight.r = 255 and tRGBColorRight.g = 0 and tRGBColorRight.b = 0))
+	if((IsColorRange(tRGBColorLeft.r, 255) = true and IsColorRange(tRGBColorLeft.g, 0) = true and IsColorRange(tRGBColorLeft.b, 0) = true) and (IsColorRange(tRGBColorRight.r, 255) = true and IsColorRange(tRGBColorRight.g, 0) = true and IsColorRange(tRGBColorRight.b, 0) = true))
 	{
 		rReturnValue := true
 	}
@@ -937,7 +952,7 @@ Is22Popup()
 
 	tRGBColorLeft := GetColorAtUiPos(9802, 405)
 	tRGBColorRight := GetColorAtUiPos(10196, 405)
-	if((tRGBColorLeft.r = 255 and tRGBColorLeft.g = 0 and tRGBColorLeft.b = 0) and (tRGBColorRight.r = 255 and tRGBColorRight.g = 0 and tRGBColorRight.b = 0))
+	if((IsColorRange(tRGBColorLeft.r, 255) = true and IsColorRange(tRGBColorLeft.g, 0) = true and IsColorRange(tRGBColorLeft.b, 0) = true) and (IsColorRange(tRGBColorRight.r, 255) = true and IsColorRange(tRGBColorRight.g, 0) = true and IsColorRange(tRGBColorRight.b, 0) = true))
 	{
 		rReturnValue := true
 	}
@@ -952,7 +967,7 @@ Is11Popup()
 	rReturnValue := false
 
 	tRGBColor := GetColorAtUiPos(9915, 397)
-	if (tRGBColor.r = 255 and tRGBColor.g = 0 and tRGBColor.b = 0 and Is12Popup() != true)
+	if (IsColorRange(tRGBColor.r, 255) = true and IsColorRange(tRGBColor.g, 0) = true and IsColorRange(tRGBColor.b, 0) = true and Is12Popup() != true)
 	{
 		rReturnValue := true
 	}
@@ -967,7 +982,7 @@ Is21Popup()
 	rReturnValue := false
 
 	tRGBColor := GetColorAtUiPos(9915, 405)
-	if (tRGBColor.r = 255 and tRGBColor.g = 0 and tRGBColor.b = 0 and Is22Popup() != true)
+	if (IsColorRange(tRGBColor.r, 255) = true and IsColorRange(tRGBColor.g, 0) = true and IsColorRange(tRGBColor.b, 0) = true and Is22Popup() != true)
 	{
 		rReturnValue := true
 	}
@@ -984,7 +999,7 @@ IsDeleteCharPopup()
 
 	tRGBColorBackdrop := GetColorAtUiPos(450, 331)
 	tRGBColorEditbox := GetColorAtUiPos(10057, 400)
-	if (tRGBColorBackdrop.r = 0 and tRGBColorBackdrop.g = 40 and tRGBColorBackdrop.b = 0) and (tRGBColorEditbox.r = 3 and tRGBColorEditbox.g = 17 and tRGBColorEditbox.b = 3)
+	if (IsColorRange(tRGBColorBackdrop.r, 0) = true and IsColorRange(tRGBColorBackdrop.g, 40) = true and IsColorRange(tRGBColorBackdrop.b, 0) = true) and (IsColorRange(tRGBColorEditbox.r, 3) = true and IsColorRange(tRGBColorEditbox.g, 17) = true and IsColorRange(tRGBColorEditbox.b, 3) = true)
 	{
 		rReturnValue := true
 	}
@@ -1001,7 +1016,7 @@ IsReconnect()
 	rReturnValue := false
 
 	tRGBColor := GetColorAtUiPos(9917, 441)
-	if (tRGBColor.r = 255 and tRGBColor.g = 0 and tRGBColor.b = 0)
+	if (IsColorRange(tRGBColor.r, 255) = true and IsColorRange(tRGBColor.g, 0) = true and IsColorRange(tRGBColor.b, 0) = true)
 	{
 		rReturnValue := true
 	}
@@ -1104,6 +1119,7 @@ GetAR()
 	ar := A_ScreenWidth / A_ScreenHeight
 	return ar
 }
+
 
 ;------------------------------------------------------------------------------------------
 PlayUtterance(menuName)
@@ -1325,6 +1341,7 @@ PlayUtterance(menuName)
 	}
 }
 
+
 ;------------------------------------------------------------------------------------------
 UpdateChilds(menuObj)
 {
@@ -1394,7 +1411,7 @@ GetNumberOfChars()
 		
 		WaitForX(1, 150)
 		tRGBColor := GetColorAtUiPos(tCharSlots[A_Index].x,tCharSlots[A_Index].y)
-		if (tRGBColor.r = 255 and tRGBColor.g = 255 and tRGBColor.b = 255)
+		if (tRGBColor.r > 250 and tRGBColor.g > 250 and tRGBColor.b > 250)
 		{
 			rReturnValue := rReturnValue + 1
 		}
@@ -1402,7 +1419,7 @@ GetNumberOfChars()
 		{
 			gIgnoreKeyPress := false
 			return rReturnValue 
-		}		
+		}
 	}
 	
 	gIgnoreKeyPress := false
