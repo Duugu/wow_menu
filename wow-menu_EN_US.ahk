@@ -13,7 +13,7 @@ SendMode Input
 SetWorkingDir %A_ScriptDir%
 
 gosub InitMenu
-SetTimer, CheckMode, 100
+SetTimer, CheckMode, 1000
 
 ;------------------------------------------------------------------------------------------
 ; globals
@@ -28,6 +28,8 @@ global gCharUIPositions
 global gEnterCharacterNameFlag := false
 
 global gIgnoreKeyPress := false
+
+global gIsInitializing
 
 global Mode := -1
 
@@ -97,6 +99,11 @@ CheckMode:
 		return
 	}
 	
+	if(gIsInitializing = true)
+	{
+		return
+	}
+		
 	if(IsWoWWindowFocus() != true and Mode != -1)
 	{
 		SwitchToMode_1()
@@ -110,7 +117,10 @@ CheckMode:
 		else if(Mode != 1 and IsGlue() = true)
 		{
 			SwitchToMode1()
-			InitLogin()		
+			if(gIsInitializing != true)
+			{
+				InitLogin()		
+			}
 		}
 	}
 return
@@ -118,6 +128,8 @@ return
 ;------------------------------------------------------------------------------------------
 InitLogin()
 {
+	gIsInitializing := true
+	
 	StartOver:
 	
 	if(IsCharSelectionScreen() = true)
@@ -310,6 +322,7 @@ InitLogin()
 		gCurrentMenuItem := gMainMenu
 		gMainMenu.onEnter()
 	}
+	gIsInitializing := false
 }
 
 ;------------------------------------------------------------------------------------------
