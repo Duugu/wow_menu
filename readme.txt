@@ -1,10 +1,13 @@
 Release: 2.0
 
+IMPORTANT:
+You need to copy the _content_ of the folder "ToInterface" (just the content, not the folder itself!) to the "Interface" folder in your Warcraft installation directory. 
+On most machines that target "Interface" folder should be under "C:\Program Files (x86)\World of Warcraft\_classic_\Interface"
+Caution: The target needs to be the "Interface" folder. NOT to the "AddOns" folder!
+
 ----------------------------------------------------------------------------------------
 
-WoW Menu Script details (German version below)
-
-1. What is the script doing?
+1. What is the script doing? (German version below)
 
 The script has two modes: "Login" and "Play". You can switch between them with ALT + F1.
 In "Login" mode, you can select characters and enter the game world with them, create new characters, switch to another server or delete characters.
