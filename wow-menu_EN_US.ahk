@@ -118,6 +118,8 @@ return
 ;------------------------------------------------------------------------------------------
 InitLogin()
 {
+	StartOver:
+	
 	if(IsCharSelectionScreen() = true)
 	{
 		if(IsDeleteCharPopup() = true)
@@ -287,7 +289,8 @@ InitLogin()
 		{
 			return
 		}
-		InitLogin()
+		goto, StartOver
+		;InitLogin()
 	}
 	else if(gNumberOfCharsOnCurrentRealm = -1)
 	{
