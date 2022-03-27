@@ -914,13 +914,45 @@ IsEnterCredentials()
 */
 
 ;------------------------------------------------------------------------------------------
+Is12Popup()
+{
+	gIgnoreKeyPress := true
+	rReturnValue := false
+
+	tRGBColorLeft := GetColorAtUiPos(9802, 397)
+	tRGBColorRight := GetColorAtUiPos(10196, 397)
+	if((tRGBColorLeft.r = 255 and tRGBColorLeft.g = 0 and tRGBColorLeft.b = 0) and (tRGBColorRight.r = 255 and tRGBColorRight.g = 0 and tRGBColorRight.b = 0))
+	{
+		rReturnValue := true
+	}
+	
+	gIgnoreKeyPress := false
+	return rReturnValue
+}
+;------------------------------------------------------------------------------------------
+Is22Popup()
+{
+	gIgnoreKeyPress := true
+	rReturnValue := false
+
+	tRGBColorLeft := GetColorAtUiPos(9802, 405)
+	tRGBColorRight := GetColorAtUiPos(10196, 405)
+	if((tRGBColorLeft.r = 255 and tRGBColorLeft.g = 0 and tRGBColorLeft.b = 0) and (tRGBColorRight.r = 255 and tRGBColorRight.g = 0 and tRGBColorRight.b = 0))
+	{
+		rReturnValue := true
+	}
+	
+	gIgnoreKeyPress := false
+	return rReturnValue
+}
+;------------------------------------------------------------------------------------------
 Is11Popup()
 {
 	gIgnoreKeyPress := true
 	rReturnValue := false
 
 	tRGBColor := GetColorAtUiPos(9915, 397)
-	if (tRGBColor.r = 255 and tRGBColor.g = 0 and tRGBColor.b = 0)
+	if (tRGBColor.r = 255 and tRGBColor.g = 0 and tRGBColor.b = 0 and Is12Popup() != true)
 	{
 		rReturnValue := true
 	}
@@ -935,7 +967,7 @@ Is21Popup()
 	rReturnValue := false
 
 	tRGBColor := GetColorAtUiPos(9915, 405)
-	if (tRGBColor.r = 255 and tRGBColor.g = 0 and tRGBColor.b = 0)
+	if (tRGBColor.r = 255 and tRGBColor.g = 0 and tRGBColor.b = 0 and Is22Popup() != true)
 	{
 		rReturnValue := true
 	}
