@@ -1,4 +1,4 @@
-Release: 2.0
+Release: 2.1
 
 IMPORTANT:
 You need to copy the _content_ of the folder "ToInterface" (just the content, not the folder itself!) to the "Interface" folder in your Warcraft installation directory. 
@@ -81,7 +81,7 @@ Todo/bugs:
 	- add server type to server names
 
 Release notes:
-	2.0
+	2.1
 		- Re-designed the script to be more reliable and much faster.
 		- The script stops auto switching between gaming/login mode if you do use ALT + F1 to manually switch the mode. You need to restart the script to turn auto switching on again.
 		- Changed the "script is processing" sound to something (water drop) that is better to hear is there's ingame music playing.
