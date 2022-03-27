@@ -30,6 +30,7 @@ global gEnterCharacterNameFlag := false
 global gIgnoreKeyPress := false
 
 global gIsInitializing
+global gIsChecking
 
 global Mode := -1
 
@@ -94,6 +95,13 @@ return
 
 ;------------------------------------------------------------------------------------------
 CheckMode:
+	if(gIsChecking = true)
+	{
+		return
+	}
+
+	gIsChecking := true
+
 	if(gManualOverride = true)
 	{
 		return
@@ -123,6 +131,8 @@ CheckMode:
 			}
 		}
 	}
+	
+	gIsChecking := false
 return
 
 ;------------------------------------------------------------------------------------------
