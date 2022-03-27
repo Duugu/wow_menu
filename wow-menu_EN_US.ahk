@@ -1,5 +1,5 @@
 ﻿/*
-Release: 2.1
+Release: 2.5
 */
 
 ;------------------------------------------------------------------------------------------
@@ -31,6 +31,8 @@ global gIgnoreKeyPress := false
 
 global gIsInitializing
 global gIsChecking
+
+global tPopupClosed
 
 global Mode := -1
 
@@ -152,14 +154,16 @@ InitLogin()
 		}
 		
 		tTimeout := 0
-		while(IsCharSelectionScreen() = true and Is11Popup() = true)
+		while(IsCharSelectionScreen() = true and (Is11Popup() = true or Is12Popup() = true))
 		{
 			gosub CheckMode
 			if(Mode != 1)
 			{ 
 				return
 			}
-				
+			
+			ClosePopUps()
+			
 			tTimeout := tTimeout + 1
 			WaitForX(1, 500)
 			if(tTimeout > 60)
@@ -218,32 +222,17 @@ InitLogin()
 			
 			if(IsLoginScreenInitialStart() != true)
 			{
-				if(Is11Popup() = true and tPopupClosed = false)
-				{
-					;click 1 line popup away
-					tPopupClosed := true
-					tmpScreen := UiToScreenNEW(9915, 397)
-					MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
-					Send {Click}
-				}
+				ClosePopUps()
 				
-				if(Is21Popup() = true and tPopupClosed = false)
-				{
-					;click 2 lines popup away
-					tPopupClosed := true
-					tmpScreen := UiToScreenNEW(9915, 405)
-					MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
-					Send {Click}
-				}
-
 				if(IsReconnect() = true)
 				{
 					;click on reconnect
+					;MsgBox Reconnect
 					tPopupClosed := true
 					tmpScreen := UiToScreenNEW(9917, 441)
 					MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
 					Send {Click}
-				}
+				}				
 			}
 		}
 	}
@@ -333,6 +322,54 @@ InitLogin()
 		gMainMenu.onEnter()
 	}
 	gIsInitializing := false
+}
+
+;------------------------------------------------------------------------------------------
+ClosePopUps()
+{
+	if(Is11Popup() = true and tPopupClosed != true)
+	{
+		;click 1 line 1 button popup away
+		;MsgBox 1L 1B
+		tPopupClosed := true
+		tmpScreen := UiToScreenNEW(9915, 397)
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+		Send {Click}
+		Sleep, 200
+	}
+
+	if(Is21Popup() = true and tPopupClosed != true)
+	{
+		;click 2 lines 1 button popup away
+		;MsgBox 2L 1B
+		tPopupClosed := true
+		tmpScreen := UiToScreenNEW(9915, 405)
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+		Send {Click}
+		Sleep, 200
+	}
+
+	if(Is12Popup() = true and tPopupClosed != true)
+	{
+		;click 1 line 2 buttons popup away
+		;MsgBox 1L 2B
+		tPopupClosed := true
+		tmpScreen := UiToScreenNEW(10196, 397)
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+		Send {Click}
+		Sleep, 200
+	}
+
+	if(Is22Popup() = true and tPopupClosed != true)
+	{
+		;click 2 lines 2 buttons popup away (right button)
+		;MsgBox 2L 2B
+		tPopupClosed := true
+		tmpScreen := UiToScreenNEW(10196, 405)
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+		Send {Click}
+		Sleep, 200
+	}
 }
 
 ;------------------------------------------------------------------------------------------
@@ -879,13 +916,45 @@ IsEnterCredentials()
 */
 
 ;------------------------------------------------------------------------------------------
+Is12Popup()
+{
+	gIgnoreKeyPress := true
+	rReturnValue := false
+
+	tRGBColorLeft := GetColorAtUiPos(9802, 397)
+	tRGBColorRight := GetColorAtUiPos(10196, 397)
+	if((tRGBColorLeft.r = 255 and tRGBColorLeft.g = 0 and tRGBColorLeft.b = 0) and (tRGBColorRight.r = 255 and tRGBColorRight.g = 0 and tRGBColorRight.b = 0))
+	{
+		rReturnValue := true
+	}
+	
+	gIgnoreKeyPress := false
+	return rReturnValue
+}
+;------------------------------------------------------------------------------------------
+Is22Popup()
+{
+	gIgnoreKeyPress := true
+	rReturnValue := false
+
+	tRGBColorLeft := GetColorAtUiPos(9802, 405)
+	tRGBColorRight := GetColorAtUiPos(10196, 405)
+	if((tRGBColorLeft.r = 255 and tRGBColorLeft.g = 0 and tRGBColorLeft.b = 0) and (tRGBColorRight.r = 255 and tRGBColorRight.g = 0 and tRGBColorRight.b = 0))
+	{
+		rReturnValue := true
+	}
+	
+	gIgnoreKeyPress := false
+	return rReturnValue
+}
+;------------------------------------------------------------------------------------------
 Is11Popup()
 {
 	gIgnoreKeyPress := true
 	rReturnValue := false
 
 	tRGBColor := GetColorAtUiPos(9915, 397)
-	if (tRGBColor.r = 255 and tRGBColor.g = 0 and tRGBColor.b = 0)
+	if (tRGBColor.r = 255 and tRGBColor.g = 0 and tRGBColor.b = 0 and Is12Popup() != true)
 	{
 		rReturnValue := true
 	}
@@ -900,7 +969,7 @@ Is21Popup()
 	rReturnValue := false
 
 	tRGBColor := GetColorAtUiPos(9915, 405)
-	if (tRGBColor.r = 255 and tRGBColor.g = 0 and tRGBColor.b = 0)
+	if (tRGBColor.r = 255 and tRGBColor.g = 0 and tRGBColor.b = 0 and Is22Popup() != true)
 	{
 		rReturnValue := true
 	}

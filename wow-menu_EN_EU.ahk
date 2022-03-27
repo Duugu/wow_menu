@@ -1,5 +1,5 @@
 ﻿/*
-Release: 2.1
+Release: 2.5
 */
 
 ;------------------------------------------------------------------------------------------
@@ -13,7 +13,7 @@ SendMode Input
 SetWorkingDir %A_ScriptDir%
 
 gosub InitMenu
-SetTimer, CheckMode, 100
+SetTimer, CheckMode, 1000
 
 ;------------------------------------------------------------------------------------------
 ; globals
@@ -28,6 +28,11 @@ global gCharUIPositions
 global gEnterCharacterNameFlag := false
 
 global gIgnoreKeyPress := false
+
+global gIsInitializing
+global gIsChecking
+
+global tPopupClosed
 
 global Mode := -1
 
@@ -92,11 +97,23 @@ return
 
 ;------------------------------------------------------------------------------------------
 CheckMode:
+	if(gIsChecking = true)
+	{
+		return
+	}
+
+	gIsChecking := true
+
 	if(gManualOverride = true)
 	{
 		return
 	}
 	
+	if(gIsInitializing = true)
+	{
+		return
+	}
+		
 	if(IsWoWWindowFocus() != true and Mode != -1)
 	{
 		SwitchToMode_1()
@@ -110,14 +127,23 @@ CheckMode:
 		else if(Mode != 1 and IsGlue() = true)
 		{
 			SwitchToMode1()
-			InitLogin()		
+			if(gIsInitializing != true)
+			{
+				InitLogin()		
+			}
 		}
 	}
+	
+	gIsChecking := false
 return
 
 ;------------------------------------------------------------------------------------------
 InitLogin()
 {
+	gIsInitializing := true
+	
+	StartOver:
+	
 	if(IsCharSelectionScreen() = true)
 	{
 		if(IsDeleteCharPopup() = true)
@@ -128,14 +154,16 @@ InitLogin()
 		}
 		
 		tTimeout := 0
-		while(IsCharSelectionScreen() = true and Is11Popup() = true)
+		while(IsCharSelectionScreen() = true and (Is11Popup() = true or Is12Popup() = true))
 		{
 			gosub CheckMode
 			if(Mode != 1)
 			{ 
 				return
 			}
-				
+			
+			ClosePopUps()
+			
 			tTimeout := tTimeout + 1
 			WaitForX(1, 500)
 			if(tTimeout > 60)
@@ -194,32 +222,17 @@ InitLogin()
 			
 			if(IsLoginScreenInitialStart() != true)
 			{
-				if(Is11Popup() = true and tPopupClosed = false)
-				{
-					;click 1 line popup away
-					tPopupClosed := true
-					tmpScreen := UiToScreenNEW(9915, 397)
-					MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
-					Send {Click}
-				}
+				ClosePopUps()
 				
-				if(Is21Popup() = true and tPopupClosed = false)
-				{
-					;click 2 lines popup away
-					tPopupClosed := true
-					tmpScreen := UiToScreenNEW(9915, 405)
-					MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
-					Send {Click}
-				}
-
 				if(IsReconnect() = true)
 				{
 					;click on reconnect
+					;MsgBox Reconnect
 					tPopupClosed := true
 					tmpScreen := UiToScreenNEW(9917, 441)
 					MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
 					Send {Click}
-				}
+				}				
 			}
 		}
 	}
@@ -287,7 +300,8 @@ InitLogin()
 		{
 			return
 		}
-		InitLogin()
+		goto, StartOver
+		;InitLogin()
 	}
 	else if(gNumberOfCharsOnCurrentRealm = -1)
 	{
@@ -306,6 +320,55 @@ InitLogin()
 		
 		gCurrentMenuItem := gMainMenu
 		gMainMenu.onEnter()
+	}
+	gIsInitializing := false
+}
+
+;------------------------------------------------------------------------------------------
+ClosePopUps()
+{
+	if(Is11Popup() = true and tPopupClosed != true)
+	{
+		;click 1 line 1 button popup away
+		;MsgBox 1L 1B
+		tPopupClosed := true
+		tmpScreen := UiToScreenNEW(9915, 397)
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+		Send {Click}
+		Sleep, 200
+	}
+
+	if(Is21Popup() = true and tPopupClosed != true)
+	{
+		;click 2 lines 1 button popup away
+		;MsgBox 2L 1B
+		tPopupClosed := true
+		tmpScreen := UiToScreenNEW(9915, 405)
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+		Send {Click}
+		Sleep, 200
+	}
+
+	if(Is12Popup() = true and tPopupClosed != true)
+	{
+		;click 1 line 2 buttons popup away
+		;MsgBox 1L 2B
+		tPopupClosed := true
+		tmpScreen := UiToScreenNEW(10196, 397)
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+		Send {Click}
+		Sleep, 200
+	}
+
+	if(Is22Popup() = true and tPopupClosed != true)
+	{
+		;click 2 lines 2 buttons popup away (right button)
+		;MsgBox 2L 2B
+		tPopupClosed := true
+		tmpScreen := UiToScreenNEW(10196, 405)
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+		Send {Click}
+		Sleep, 200
 	}
 }
 

@@ -1,9 +1,15 @@
-Release: 2.1
+Release: 2.5
 
-IMPORTANT:
-You need to copy the _content_ of the folder "ToInterface" (just the content, not the folder itself!) to the "Interface" folder in your Warcraft installation directory. 
-On most machines that target "Interface" folder should be under "C:\Program Files (x86)\World of Warcraft\_classic_\Interface"
-Caution: The target needs to be the "Interface" folder. NOT to the "AddOns" folder!
+IMPORTANT SET UP STEPS. DO THIS:
+1. Copy the folder "wow_menu" from the downloaded .zip file to the folder "AddOns". ("C:\Program Files (x86)\World of Warcraft\_classic_\Interface\AddOns") Overwrite any existing files and folders.
+2. Go to the folder "wow_menu" in "C:\Program Files (x86)\World of Warcraft\_classic_\Interface\AddOns".
+3. (Optional) Create a shortcut to the appropiate script (wow-menu_DE_EU.ahk, wow-menu_EN_EU.ahk, or wow-menu_EN_US.ahk, depending on your language/region combination) on you desktop, to easily start the script if you start playing the game.
+4. Go to the folder "CopyTheContentOfThisFolderToInterface" in you "wow_menu" folder. There should be 3 folders in there.
+5. Copy all 3 folders ("DialogFrame", "GLUES", "HELPFRAME").
+6. Go to the "Interface" folder ("C:\Program Files (x86)\World of Warcraft\_classic_\Interface").
+7. Insert the just copied 3 folders in that "Interface" folder.
+8. You are done!
+Caution: You need to really carefully follow the instructions above. Do NOT just copy the full "wow_menu" folder from the downloaded .zip file to "Interface". That won't work.
 
 ----------------------------------------------------------------------------------------
 
@@ -13,7 +19,6 @@ The script has two modes: "Login" and "Play". You can switch between them with A
 In "Login" mode, you can select characters and enter the game world with them, create new characters, switch to another server or delete characters.
 In "Play" mode, you can use the NUMPAD 7-8 keys to do right-clicks at tree different positions in the game. This function is used for looting in the game.
 Use ALT + ESCAPE to unload/end the script (there's no audio feedback on that action!).
-
 
 2. Usage
 
@@ -41,10 +46,16 @@ After logging in, the script automatically switches to "Play" mode. When logging
 
 DEUTSCHE VERSION
 
-WICHTIG:
-Du muss die _Inhalte_ des Ordners "ToInterface" (nur die Inhalte, nicht den ordner selbst!) in den "Interface"-Ordner in deinem Warcraft-Installationsverzeichnis kopieren.
-Auf den meisten Computern findest du den "Interface"-Ordner unter "C:\Program Files (x86)\World of Warcraft\_classic_\Interface"
-Achtung: Du musst in den Ordner "Interface" kopieren. Nicht in den "AddOns"-Ordner!
+WICHTIGE EINRICHTUNGSSCHRITTE. GEHE FOLGENDERMAßEN VOR:
+1. Kopiere den Ordner "wow_menu" aus der heruntergeladenen Zip-Datei in den Ordner "AddOns". ("C:\Program Files (x86)\World of Warcraft\_classic_\Interface\AddOns") Überschreibe dabei alle möglicherweise vorhandenen Dateien und Order.
+2. Geh zum gerade eingefügten Ordner "wow_menu" in "C:\Program Files (x86)\World of Warcraft\_classic_\Interface\AddOns".
+3. (Optional) Erstelle eine Verknüpfung zum entsprechenden Skript (wow-menu_DE_EU.ahk, wow-menu_EN_EU.ahk oder wow-menu_EN_US.ahk, je nach deiner Kombination aus Sprache und Region) auf deinem Desktop. Damit kannst du das Skript später einfacher zum Spielen starten.
+4. Geht zum Ordner "CopyTheContentOfThisFolderToInterface" in deinem "wow_menu" Ordner. Er enthält 3 Ordner.
+5. Kopiere alle 3 Ordner ("DialogFrame", "GLUES", "HELPFRAME").
+6. Geht zum "Interface" Ordner ("C:\Program Files (x86)\World of Warcraft\_classic_\Interface").
+7. Füge die soeben kopierten 3 Ordner in diesem "Interface"-Ordner ein.
+8. Das war's!
+Achtung: Du musst die Anweisungen oben zwingend genau befolgen. Kopiere NICHT einfach den gesamten "wow_menu"-Ordner aus der heruntergeladenen Zip-Datei in den "Interface"-Odner. Das Skript funktioniert dann nicht.
 
 1. Was macht das Skript?
 
@@ -84,7 +95,7 @@ Todo/bugs:
 	- add server type to server names
 
 Release notes:
-	2.1
+	2.5
 		- Re-designed the script to be more reliable and much faster.
 		- The script stops auto switching between gaming/login mode if you do use ALT + F1 to manually switch the mode. You need to restart the script to turn auto switching on again.
 		- Changed the "script is processing" sound to something (water drop) that is better to hear is there's ingame music playing.
