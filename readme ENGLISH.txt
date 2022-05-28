@@ -1,9 +1,9 @@
-Release: 2.7
+Release: 2.8
 
 IMPORTANT SET UP STEPS. DO THIS:
-1. Copy the folder "wow_menu" from the downloaded .zip file to the folder "AddOns". ("C:\Program Files (x86)\World of Warcraft\_classic_\Interface\AddOns") Overwrite any existing files and folders.
-2. Go to the folder "wow_menu" in "C:\Program Files (x86)\World of Warcraft\_classic_\Interface\AddOns".
-3. (Optional) Create a shortcut to the appropiate script (wow-menu_DE_EU.ahk, wow-menu_EN_EU.ahk, or wow-menu_EN_US.ahk, depending on your language/region combination) on you desktop, to easily start the script if you start playing the game.
+1. Copy the folder "wow_menu" from the downloaded .zip file to some local location on your computer.
+2. Go to the folder "wow_menu" that you've just copied.
+3. (Optional) Create a shortcut to the appropiate script (wow-menu_EN_EU.ahk or wow-menu_EN_US.ahk, depending on your language/region combination) on you desktop, to easily start the script if you start playing the game.
 4. Go to the folder "CopyTheContentOfThisFolderToInterface" in you "wow_menu" folder. There should be 3 folders in there.
 5. Copy all 3 folders ("DialogFrame", "GLUES", "HELPFRAME").
 6. Go to the "Interface" folder ("C:\Program Files (x86)\World of Warcraft\_classic_\Interface").
@@ -13,7 +13,7 @@ Caution: You need to really carefully follow the instructions above. Do NOT just
 
 ----------------------------------------------------------------------------------------
 
-1. What is the script doing? (German version below)
+1. What is the script doing?
 
 The script has two modes: "Login" and "Play". You can switch between them with ALT + F1.
 In "Login" mode, you can select characters and enter the game world with them, create new characters, switch to another server or delete characters.
@@ -44,50 +44,6 @@ After logging in, the script automatically switches to "Play" mode. When logging
 
 ----------------------------------------------------------------------------------------
 
-DEUTSCHE VERSION
-
-WICHTIGE EINRICHTUNGSSCHRITTE. GEHE FOLGENDERMAßEN VOR:
-1. Kopiere den Ordner "wow_menu" aus der heruntergeladenen Zip-Datei in den Ordner "AddOns". ("C:\Program Files (x86)\World of Warcraft\_classic_\Interface\AddOns") Überschreibe dabei alle möglicherweise vorhandenen Dateien und Order.
-2. Geh zum gerade eingefügten Ordner "wow_menu" in "C:\Program Files (x86)\World of Warcraft\_classic_\Interface\AddOns".
-3. (Optional) Erstelle eine Verknüpfung zum entsprechenden Skript (wow-menu_DE_EU.ahk, wow-menu_EN_EU.ahk oder wow-menu_EN_US.ahk, je nach deiner Kombination aus Sprache und Region) auf deinem Desktop. Damit kannst du das Skript später einfacher zum Spielen starten.
-4. Geht zum Ordner "CopyTheContentOfThisFolderToInterface" in deinem "wow_menu" Ordner. Er enthält 3 Ordner.
-5. Kopiere alle 3 Ordner ("DialogFrame", "GLUES", "HELPFRAME").
-6. Geht zum "Interface" Ordner ("C:\Program Files (x86)\World of Warcraft\_classic_\Interface").
-7. Füge die soeben kopierten 3 Ordner in diesem "Interface"-Ordner ein.
-8. Das war's!
-Achtung: Du musst die Anweisungen oben zwingend genau befolgen. Kopiere NICHT einfach den gesamten "wow_menu"-Ordner aus der heruntergeladenen Zip-Datei in den "Interface"-Odner. Das Skript funktioniert dann nicht.
-
-1. Was macht das Skript?
-
-Das Skript hat zwei Modi: "Login" und "Spielen", zwischen denen du mit ALT + F1 umschalten kannst.
-Im Modus "Login" kannst du über ein Audio-Menü auf der Charakterauswahl-Seite von WoW Chars auswählen und mit diesen die Spielwelt betreten, neue Chars erstellen, zu einem anderen Server wechseln oder Chars löschen.
-Im Modus "Spielen" kannst du über die Tasten NUMMERNBLOCK 7-8 zwischen drei Kameraperspektiven im Spiel umschalten und gleichzeitig einen Rechtsklick im Spiel durchführen. Diese Funktion dient dem Plündern im Spiel.
-Mit ALT + ESCAPE kannst du das Skript vollständig beenden (es gibt kein Audiofeedback dabei!).
-
-2. Verwendung
-
-Du startest das Skript indem du die Datei für deine Sprache und Region ausführst:
-- Wenn du auf US-Servern spielst: wow-menu_EN_US.ahk
-- Wenn du auf EU-Servern in English spielst: wow-menu_EN_EU.ahk
-- Wenn du auf EU-Servern in Deutsch spielst: wow-menu_DE_EU.ahk
-Das Skript startet im Modus "Login". Es wird erst aktiv, wenn du WoW gestartet hast und das WoW-Fenster den Fokus bekommt.
-Dann versucht es die Charauswahlseite zu erkennen, bzw. es warte so lange, bist du in WoW angemeldet bist und die Charakterauswahlseite geladen ist. Solange das Skript irgendeine Erkennung durchführt oder wartet, hörst du einen Sound. Der Sound bedeutet, dass du warten musst.
-Achtung: Drücke keine Taste, wechsel nicht das Fenster und mach keine anderen Dinge solange der Sound läuft. Niemals. Nirgendwo im Menü. Selbst dann nicht, wenn sonst die Welt untergeht. Hebe deine Hände in die Luft, solange der Sound läuft.
-Sobald du auf der Charakterauswahlseite angekommen bist, öffnet sich das Audio-Menü. Es sagt "Hauptmenü". Du kannst im Menü nach rechts gehen, und die einzelnen Optionen verwenden.
-Wenn du dich mit einem Char einloggen möchtest, musst du diesen erst auswählen und dich dann mit dem ausgewählen Char einloggen.
-Charkternamen werden dabei nicht erkannt oder vorgelesen. Dir wird nur "1, 2, 3 bis 10" für die Charakterplätze vorgelesen. Was sich für ein Char auf dem jeweiligen Platz befindet musst du dir selbst notieren.
-Neu erstellte Chars landen immer auf dem nächsten freien Platz. Wenn du also schon 3 Chars hast, und einen neuen erstellst, dann ist dieser auf Platz 4.
-Nach dem Einloggen schaltet das Skript automatisch auf "Spielen". Beim Ausloggen schaltet es automatisch auf "Login". Sollte das nicht funktionieren, kannst du mit ALT + F1 selbst umschalten.
-
-3. Voraussetzungen:
-
-- Das Skript funktioniert nur unter Windows, nur mit WoW TBC und nur mit dem deutschen WoW-Client.
-- Du darfst das Skript und seinen Ordner nicht verschieben. Wenn du es einfacher starten möchtest, kannst du dir eine Verknüpfung zu deinem Skript erstellen.
-- Das Skript erfordert, dass du WoW im Vollbildmodus spielst. (Das ist standardmäßig so.)
-- Das Skript erfordert, dass du in WoW dieselbe Auflösung wie in Windows verwendest (das ist standardmäßig so).
-
-----------------------------------------------------------------------------------------
-
 RELEASE NOTES
 
 Todo/bugs:
@@ -95,6 +51,13 @@ Todo/bugs:
 	- add server type to server names
 
 Release notes:
+	2.8
+		- Added alternative key binds for the numpad 7-9 feature:
+			Shift + I for numpad 7
+			Shift + O for numpad 8
+			Shift + P for numpad 9
+		- Fixed an issue with switching realm at 1024x768 resolution
+
 	2.5
 		- Re-designed the script to be more reliable and much faster.
 		- The script stops auto switching between gaming/login mode if you do use ALT + F1 to manually switch the mode. You need to restart the script to turn auto switching on again.

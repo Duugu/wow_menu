@@ -1,5 +1,5 @@
 ﻿/*
-Release: 2.7
+Release: 2.8
 */
 
 ;------------------------------------------------------------------------------------------
@@ -625,7 +625,7 @@ InitMenu:
 							WaitForX(4, 500)
 							if(IsHighPopServerWarning() = true)
 							{
-								tmp := UiToScreenNEW(9799, 436)
+								tmp := UiToScreenNEW(9810, 436)
 								MouseMove, tmp.X, tmp.Y, 0		
 								Send {Click}
 								WaitForX(1, 500)									
@@ -874,7 +874,7 @@ IsHighPopServerWarning()
 	gIgnoreKeyPress := true
 	rReturnValue := false
 
-	tRGBColor := GetColorAtUiPos(9799, 436)
+	tRGBColor := GetColorAtUiPos(9810, 436)
 	if (IsColorRange(tRGBColor.r, 255) = true and IsColorRange(tRGBColor.g, 0) = true and IsColorRange(tRGBColor.b, 0) = true)
 	{
 		rReturnValue := true
@@ -1080,7 +1080,7 @@ UiToScreenNEW(x, y)
 	{
 		fSx := A_ScreenWidth - ((A_ScreenWidth / 100) * ((x * -1) / (GetUiX() / 100)))
 	}
-	else if(x <= (GetUiX() / 3)) ;anchor left
+	else if(x < 7000) ;anchor left
 	{
 		fSx := (x / (GetUiX() / 100)) * (A_ScreenWidth / 100)
 	}	
@@ -1792,6 +1792,7 @@ EnterCharacterNameHandler()
 	;------------------------------------------------------------------------------------------
 	;view 2 
 	Numpad7::
+		+I::	
 		gosub CheckMode
 		if(mode = 0)
 		{
@@ -1809,6 +1810,7 @@ EnterCharacterNameHandler()
 	;------------------------------------------------------------------------------------------
 	;view 4
 	Numpad8::
+		+O::	
 		gosub CheckMode
 		if(mode = 0)
 		{
@@ -1826,6 +1828,7 @@ EnterCharacterNameHandler()
 	;------------------------------------------------------------------------------------------
 	;view 5
 	Numpad9::
+	+P::
 		gosub CheckMode
 		if(mode = 0)
 		{
