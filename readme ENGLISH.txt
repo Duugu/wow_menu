@@ -1,4 +1,4 @@
-Release: 2.8
+Release: 2.9
 
 IMPORTANT SET UP STEPS. DO THIS:
 1. Copy the folder "wow_menu" from the downloaded .zip file to some local location on your computer.
@@ -51,6 +51,13 @@ Todo/bugs:
 	- add server type to server names
 
 Release notes:
+	2.9
+		- Changed the alternative key binds for the numpad 7-9 from Shift to Ctrl + Shift:
+			Control + Shift + I for numpad 7
+			Control + Shift + O for numpad 8
+			Control + Shift + P for numpad 9
+
+
 	2.8
 		- Added alternative key binds for the numpad 7-9 feature:
 			Shift + I for numpad 7
