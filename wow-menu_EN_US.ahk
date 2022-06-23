@@ -1,5 +1,5 @@
 ﻿/*
-Release: 2.9
+Release: 2.10
 */
 
 ;------------------------------------------------------------------------------------------
@@ -26,6 +26,7 @@ global gMainMenu
 global gNumberOfCharsOnCurrentRealm := -1
 global gCharUIPositions
 global gEnterCharacterNameFlag := false
+global gDeleteCharacterNameFlag := false
 
 global gIgnoreKeyPress := false
 
@@ -38,33 +39,34 @@ global Mode := -1
 
 SwitchToMode_1()
 
+
 ;------------------------------------------------------------------------------------------
 ;generic class for menu entries
 ;------------------------------------------------------------------------------------------
-class baseMenuEntryObject 
+class baseMenuEntryObject
 {
     name := "generic Name"
     parent := ""
     p := ""
     n := ""
     childs := []
-    
+
     onSelect()
     {
-		if (this.childs not or this.childs.MaxIndex() < 1) 
+		if (this.childs not or this.childs.MaxIndex() < 1)
 		{
 			PlayUtterance(this.name)
 			return
-		}		
+		}
 		this.childs[1].onEnter()
     }
-    
+
     onEnter()
     {
 		gCurrentMenuItem := this
 		PlayUtterance(this.name)
     }
-	
+
 	onAction()
 	{
 		;MsgBox % this.name " generic"
@@ -75,15 +77,17 @@ class baseMenuEntryObject
 ; general keybinds, subs, functions
 ;------------------------------------------------------------------------------------------
 !Esc::
-	ExitApp 
+	PlayUtterance("script_exited")
+	sleep 1000
+	ExitApp
 return
 
 ;------------------------------------------------------------------------------------------
 !f1::
 	Thread, Interrupt, 0
-	
+
 	gManualOverride := true
-	
+
 	if(Mode = 1 or Mode = -1)
 	{
 		SwitchToMode0()
@@ -108,17 +112,17 @@ CheckMode:
 	{
 		return
 	}
-	
+
 	if(gIsInitializing = true)
 	{
 		return
 	}
-		
+
 	if(IsWoWWindowFocus() != true and Mode != -1)
 	{
 		SwitchToMode_1()
 	}
-	else 
+	else
 	{
 		if(IsIngame() = true and Mode != 0)
 		{
@@ -129,11 +133,11 @@ CheckMode:
 			SwitchToMode1()
 			if(gIsInitializing != true)
 			{
-				InitLogin()		
+				InitLogin()
 			}
 		}
 	}
-	
+
 	gIsChecking := false
 return
 
@@ -141,29 +145,29 @@ return
 InitLogin()
 {
 	gIsInitializing := true
-	
+
 	StartOver:
-	
+
 	if(IsCharSelectionScreen() = true)
 	{
 		if(IsDeleteCharPopup() = true)
 		{
 			tmpScreen := UiToScreenNEW(10195, 437)
-			MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+			MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
 			Send {Click}
 		}
-		
+
 		tTimeout := 0
 		while(IsCharSelectionScreen() = true and (Is11Popup() = true or Is12Popup() = true))
 		{
 			gosub CheckMode
 			if(Mode != 1)
-			{ 
+			{
 				return
 			}
-			
+
 			ClosePopUps()
-			
+
 			tTimeout := tTimeout + 1
 			WaitForX(1, 500)
 			if(tTimeout > 60)
@@ -176,28 +180,28 @@ InitLogin()
 				return
 			}
 		}
-		
+
 		gosub CheckMode
 		if(Mode != 1)
 		{
 			return
 		}
-		
+
 		UpdateCharacterMenu()
-		
+
 		gosub CheckMode
 		if(Mode != 1)
 		{
 			return
 		}
-		
+
 		gCurrentMenuItem := gMainMenu
 		gMainMenu.onEnter()
 	}
 	else if(IsLoginScreen() = true)
 	{
 		tPopupClosed := false
-		
+
 		tTimeout := 0
 		while(IsLoginScreen() = true)
 		{
@@ -205,8 +209,8 @@ InitLogin()
 			if(Mode != 1)
 			{
 				return
-			}				
-			
+			}
+
 			tTimeout := tTimeout + 1
 			WaitForX(1, 500)
 			if(tTimeout > 120)
@@ -218,30 +222,30 @@ InitLogin()
 				Pause
 			return
 			}
-			
-			
+
+
 			if(IsLoginScreenInitialStart() != true)
 			{
 				ClosePopUps()
-				
+
 				if(IsReconnect() = true)
 				{
 					;click on reconnect
 					;MsgBox Reconnect
 					tPopupClosed := true
 					tmpScreen := UiToScreenNEW(9917, 441)
-					MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+					MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
 					Send {Click}
-				}				
+				}
 			}
 		}
 	}
 	else if(IsRealmSelectionScreen() = true)
 	{
 		tmpScreen := UiToScreenNEW(-403, 606)
-		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
 		Send {Click} ;cancel
-		
+
 		tTimeout := 0
 		while(IsRealmSelectionScreen() = true)
 		{
@@ -250,7 +254,7 @@ InitLogin()
 			{
 				return
 			}
-				
+
 			tTimeout := tTimeout + 1
 			WaitForX(1, 500)
 			if(tTimeout > 60)
@@ -267,9 +271,9 @@ InitLogin()
 	else if(IsCharCreationScreen() = true)
 	{
 		tmpScreen := UiToScreenNEW(-72, 733)
-		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
 		Send {Click} ;back
-		
+
 		tTimeout := 0
 		while(IsCharCreationScreen() = true)
 		{
@@ -278,7 +282,7 @@ InitLogin()
 			{
 				return
 			}
-				
+
 			tTimeout := tTimeout + 1
 			WaitForX(1, 500)
 			if(tTimeout > 60)
@@ -292,7 +296,7 @@ InitLogin()
 			}
 		}
 	}
-	
+
 	if(IsCharSelectionScreen() != true)
 	{
 		gosub CheckMode
@@ -309,18 +313,19 @@ InitLogin()
 		if(Mode != 1)
 		{
 			return
-		}		
+		}
 		UpdateCharacterMenu()
-		
+
 		gosub CheckMode
 		if(Mode != 1)
 		{
 			return
 		}
-		
+
 		gCurrentMenuItem := gMainMenu
 		gMainMenu.onEnter()
 	}
+
 	gIsInitializing := false
 }
 
@@ -333,7 +338,7 @@ ClosePopUps()
 		;MsgBox 1L 1B
 		tPopupClosed := true
 		tmpScreen := UiToScreenNEW(9915, 397)
-		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
 		Send {Click}
 		Sleep, 200
 	}
@@ -344,7 +349,7 @@ ClosePopUps()
 		;MsgBox 2L 1B
 		tPopupClosed := true
 		tmpScreen := UiToScreenNEW(9915, 405)
-		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
 		Send {Click}
 		Sleep, 200
 	}
@@ -355,7 +360,7 @@ ClosePopUps()
 		;MsgBox 1L 2B
 		tPopupClosed := true
 		tmpScreen := UiToScreenNEW(10196, 397)
-		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
 		Send {Click}
 		Sleep, 200
 	}
@@ -366,7 +371,7 @@ ClosePopUps()
 		;MsgBox 2L 2B
 		tPopupClosed := true
 		tmpScreen := UiToScreenNEW(10196, 405)
-		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0	
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
 		Send {Click}
 		Sleep, 200
 	}
@@ -375,33 +380,33 @@ ClosePopUps()
 ;------------------------------------------------------------------------------------------
 InitMenu:
 	global gCharUIPositions := {1:{x:-45,y:106},2:{x:-45,y:162},3:{x:-45,y:218},4:{x:-45,y:274},5:{x:-45,y:330},6:{x:-45,y:386},7:{x:-45,y:442},8:{x:-45,y:498},9:{x:-45,y:554},10:{x:-45,y:610}}
-	
-	
+
+
 		global tRealmLangs := {1:{name:"USA_West",x:450,y:636},2:{name:"USA_East",x:9827,y:636},3:{name:"Oceanic",x:9899,y:636},4:{name:"Latin_America",x:9968,y:636},5:{name:"Brasil",x:10083,y:636}}
-		
+
 		global tServerNames := {}
 		tServerNames[1] := {1:{name:"Anathema",x:9795,y:192},2:{name:"Arcanite_Reaper",x:9795,y:212},3:{name:"Atiesh",x:9795,y:232},4:{name:"Azursong",x:9795,y:252},5:{name:"Bigglesworth",x:9795,y:272},6:{name:"Biaumeux",x:9795,y:292},7:{name:"Fairbanks",x:9795,y:312},8:{name:"Grobbulus",x:9795,y:332},9:{name:"Kurinnaxx",x:9795,y:352},10:{name:"Myzrael",x:9795,y:372},11:{name:"Old_Blanchy",x:9795,y:392},12:{name:"Rattlegore",x:9795,y:412},13:{name:"Smolderweb",x:9795,y:432},14:{name:"Thunderfury",x:9795,y:452},15:{name:"Whitemane",x:9795,y:472}}
 		tServerNames[2] := {1:{name:"Ashkandi",x:9795,y:192},2:{name:"Benediction",x:9795,y:212},3:{name:"Bloodsail_Buccaneers",x:9795,y:232},4:{name:"Deviate_Delight",x:9795,y:252},5:{name:"Earthfury",x:9795,y:272},6:{name:"Faerlina",x:9795,y:292},7:{name:"Heartseeker",x:9795,y:312},8:{name:"Herod",x:9795,y:332},9:{name:"Incendius",x:9795,y:352},10:{name:"Kirtonos",x:9795,y:372},11:{name:"Krmocrush",x:9795,y:392},12:{name:"Mankrik",x:9795,y:412},13:{name:"Netherwind",x:9795,y:432},14:{name:"Pagle",x:9795,y:452},15:{name:"Skeram",x:9795,y:472},16:{name:"Stalagg",x:9795,y:492},17:{name:"Sulfuras",x:9795,y:512},18:{name:"Thalnos",x:9795,y:532},19:{name:"Westfall",x:9795,y:552},20:{name:"Windseeker",x:9795,y:572}}
-		tServerNames[3] := {1:{name:"Argual",x:9795,y:192},2:{name:"Felstriker",x:9795,y:212},3:{name:"Remulos",x:9795,y:232},4:{name:"Yojamba",x:9795,y:252}}	
-		tServerNames[4] := {1:{name:"Loatheb",x:9795,y:192}}	
-		tServerNames[5] := {1:{name:"Sul_thraze",x:9795,y:192}}	
+		tServerNames[3] := {1:{name:"Argual",x:9795,y:192},2:{name:"Felstriker",x:9795,y:212},3:{name:"Remulos",x:9795,y:232},4:{name:"Yojamba",x:9795,y:252}}
+		tServerNames[4] := {1:{name:"Loatheb",x:9795,y:192}}
+		tServerNames[5] := {1:{name:"Sul_thraze",x:9795,y:192}}
 
 	global tGenders := {1:{name:"male",x:102,y:420},2:{name:"female",x:146,y:420}}
 	global tRaces := {1:{name:"human",x:81,y:150,classes:{1:"warrior",2:"paladin",3:"rogue",4:"priest",5:"mage",6:"warlock"}},2:{name:"dwarf",x:81,y:202,classes:{1:"warrior",2:"paladin",3:"hunter",4:"rogue",5:"priest"}},3:{name:"nightelf",x:81,y:254,classes:{1:"warrior",2:"hunter",3:"rogue",4:"priest",5:"druid"}},4:{name:"gnome",x:81,y:306,classes:{1:"warrior",2:"rogue",3:"mage",4:"warlock"}},5:{name:"draenei",x:81,y:358,classes:{1:"warrior",2:"paladin",3:"hunter",4:"priest",5:"shaman",6:"mage"}},6:{name:"orc",x:177,y:150,classes:{1:"warrior",2:"hunter",3:"rogue",4:"shaman",5:"warlock"}},7:{name:"undead",x:177,y:202,classes:{1:"warrior",2:"rogue",3:"priest",4:"mage",5:"warlock"}},8:{name:"tauren",x:177,y:254,classes:{1:"warrior",2:"hunter",3:"shaman",4:"druid"}},9:{name:"troll",x:177,y:306,classes:{1:"warrior",2:"hunter",3:"rogue",4:"priest",5:"shaman",6:"mage"}},10:{name:"bloodelf",x:177,y:358,classes:{1:"paladin",2:"hunter",3:"rogue",4:"priest",5:"mage",6:"warlock"}}}
-	
+
 	;build the audio menu
 	;main
 	gMainMenu := new baseMenuEntryObject
 	gMainMenu.name := "main_menu"
 	gMainMenu.parent := ""
 	gMainMenu.childs := []
-	
+
 		;menu item 1
 		tMainItemN := 1
 		gMainMenu.childs[tMainItemN] := new baseMenuEntryObject
 		gMainMenu.childs[tMainItemN].parent := gMainMenu
 		gMainMenu.childs[tMainItemN].name := "select_char"
-		;UpdateCharacterMenu()		
+		;UpdateCharacterMenu()
 
 		;menu item 2
 		tMainItemN := 2
@@ -417,8 +422,8 @@ InitMenu:
 			else
 			{
 				tmp := UiToScreenNEW(9918, 700)
-				MouseMove, tmp.X, tmp.Y, 0		
-				Send {Click}			
+				MouseMove, tmp.X, tmp.Y, 0
+				Send {Click}
 			}
 		}
 		gMainMenu.childs[tMainItemN].onAction := Func("gMainMenuchilds2Action").Bind(gMainMenu.childs[tMainItemN])
@@ -437,14 +442,14 @@ InitMenu:
 				gMainMenu.childs[tMainItemN].childs[tGenderNumber].name := tGenders[tGenderNumber].name
 				gMainMenu.childs[tMainItemN].childs[tGenderNumber].childs := []
 				Loop % tRaces.MaxIndex()
-				{				
+				{
 					tRaceNumber := A_Index
 					gMainMenu.childs[tMainItemN].childs[tGenderNumber].childs[tRaceNumber] := new baseMenuEntryObject
 					gMainMenu.childs[tMainItemN].childs[tGenderNumber].childs[tRaceNumber].parent := gMainMenu.childs[tMainItemN].childs[tGenderNumber]
 					gMainMenu.childs[tMainItemN].childs[tGenderNumber].childs[tRaceNumber].name := tRaces[tRaceNumber].name
 					gMainMenu.childs[tMainItemN].childs[tGenderNumber].childs[tRaceNumber].childs := []
 					Loop % tRaces[tRaceNumber].classes.MaxIndex()
-					{				
+					{
 						tClassNumber := A_Index
 						gMainMenu.childs[tMainItemN].childs[tGenderNumber].childs[tRaceNumber].childs[tClassNumber] := new baseMenuEntryObject
 						gMainMenu.childs[tMainItemN].childs[tGenderNumber].childs[tRaceNumber].childs[tClassNumber].parent := gMainMenu.childs[tMainItemN].childs[tGenderNumber].childs[tRaceNumber]
@@ -452,14 +457,14 @@ InitMenu:
 						gMainMenuchildsGenericCreateCharAction(this, genderNumber, raceNumber, classNumber)
 						{
 							gNumberOfCharsOnCurrentRealm := GetNumberOfChars()
-							
+
 							if(gNumberOfCharsOnCurrentRealm < 9)
 							{
 								gIgnoreKeyPress := true
 								tmp := UiToScreenNEW(-230, 616)
-								MouseMove, tmp.X, tmp.Y, 0		
+								MouseMove, tmp.X, tmp.Y, 0
 								Send {Click}
-								
+
 								;wait for create screen
 								tTimeout := 0
 								while(IsCharCreationScreen() != true)
@@ -469,7 +474,7 @@ InitMenu:
 									{
 										return
 									}
-										
+
 									tTimeout := tTimeout + 1
 									WaitForX(1, 500)
 									if(tTimeout > 60)
@@ -482,33 +487,33 @@ InitMenu:
 									return
 									}
 								}
-								
+
 								tmp := UiToScreenNEW(tRaces[raceNumber].x, tRaces[raceNumber].y)
-								MouseMove, tmp.X, tmp.Y, 0		
+								MouseMove, tmp.X, tmp.Y, 0
 								Send {Click}
 								WaitForX(2, 500)
 
 								tClassPositions := {1:{x:84,y:476},2:{x:135,y:476},3:{x:181,y:476},4:{x:87,y:520},5:{x:133,y:520},6:{x:181,y:520}}
 								tmp := UiToScreenNEW(tClassPositions[classNumber].x, tClassPositions[classNumber].y)
-								MouseMove, tmp.X, tmp.Y, 0		
+								MouseMove, tmp.X, tmp.Y, 0
 								Send {Click}
 								WaitForX(2, 500)
-								
+
 								tmp := UiToScreenNEW(tGenders[genderNumber].x, tGenders[genderNumber].y)
-								MouseMove, tmp.X, tmp.Y, 0		
+								MouseMove, tmp.X, tmp.Y, 0
 								Send {Click}
 								WaitForX(2, 500)
-								
+
 								;random style
 								tmp := UiToScreenNEW(90, 737)
-								MouseMove, tmp.X, tmp.Y, 0		
+								MouseMove, tmp.X, tmp.Y, 0
 								Send {Click}
-								
+
 								;enter char name and press enter or esc to abort
 								gEnterCharacterNameFlag := true
-								
+
 								PlayUtterance("enter_name_press_enter_or_esc")
-								
+
 								gIgnoreKeyPress := false
 							}
 							else
@@ -551,23 +556,23 @@ InitMenu:
 						gMainMenuchilds4ChildsXChildsYAction(this, langNumber, serverNumber)
 						{
 							gIgnoreKeyPress := true
-							
+
 							PlayUtterance("switching_to_server")
 							sleep 1500
-							
+
 							;test if on char selection screen
-							if(IsCharSelectionScreen() != true) 
+							if(IsCharSelectionScreen() != true)
 							{
 								;if not > init to char sel
 								;Send {Esc}
 								InitLogin()
 							}
-							
+
 							;click on "select realm"
 							tmp := UiToScreenNEW(-191, 51)
-							MouseMove, tmp.X, tmp.Y, 0		
+							MouseMove, tmp.X, tmp.Y, 0
 							Send {Click}
-							
+
 							;wait for realm selection screen
 							tTimeout := 0
 							while(IsRealmSelectionScreen() != true)
@@ -577,7 +582,7 @@ InitMenu:
 								{
 									return
 								}
-									
+
 								tTimeout := tTimeout + 1
 								WaitForX(1, 500)
 								if(tTimeout > 60)
@@ -589,29 +594,29 @@ InitMenu:
 									Pause
 								return
 								}
-							}							
-							
+							}
+
 							;click on lang tab
 							tmp := UiToScreenNEW(tRealmLangs[langNumber].x, tRealmLangs[langNumber].y)
-							MouseMove, tmp.X, tmp.Y, 0		
+							MouseMove, tmp.X, tmp.Y, 0
 							Send {Click}
-							
+
 							WaitForX(1, 500)
 							;click on sort by type
 							tmp := UiToScreenNEW(9985, 168)
-							MouseMove, tmp.X, tmp.Y, 0		
+							MouseMove, tmp.X, tmp.Y, 0
 							Send {Click}
-							
+
 							WaitForX(1, 500)
 							;click on sort by name
 							tmp := UiToScreenNEW(9935, 168)
-							MouseMove, tmp.X, tmp.Y, 0		
+							MouseMove, tmp.X, tmp.Y, 0
 							Send {Click}
-							
+
 							WaitForX(1, 500)
 							;click on server
 							tmp := UiToScreenNEW(tServerNames[langNumber][serverNumber].x,tServerNames[langNumber][serverNumber].y)
-							MouseMove, tmp.X, tmp.Y, 0		
+							MouseMove, tmp.X, tmp.Y, 0
 							;MsgBox % tLangNumber . " - " . serverNumber . " - " . tServerNames[tLangNumber][serverNumber].x . " - " . tServerNames[tLangNumber][serverNumber].x . " - " . tmp.X . " - " . tmp.Y
 							Send {Click}
 
@@ -620,18 +625,18 @@ InitMenu:
 							WaitForX(1, 500)
 							;click on ok
 							tmp := UiToScreenNEW(10081, 606)
-							MouseMove, tmp.X, tmp.Y, 0		
+							MouseMove, tmp.X, tmp.Y, 0
 							Send {Click}
-							
+
 							WaitForX(4, 500)
 							if(IsHighPopServerWarning() = true)
 							{
 								tmp := UiToScreenNEW(9810, 436)
-								MouseMove, tmp.X, tmp.Y, 0		
+								MouseMove, tmp.X, tmp.Y, 0
 								Send {Click}
-								WaitForX(1, 500)									
+								WaitForX(1, 500)
 							}
-							
+
 							;test if on char selection screen
 							tTimeout := 0
 							while(IsCharSelectionScreen() != true)
@@ -641,16 +646,16 @@ InitMenu:
 								{
 									return
 								}
-									
+
 								if(IsCharCreationScreen() = true)
 								{
 									;not chars > back to char sel
 									tmp := UiToScreenNEW(-72, 733)
-									MouseMove, tmp.X, tmp.Y, 0		
+									MouseMove, tmp.X, tmp.Y, 0
 									Send {Click}
-									WaitForX(1, 500)									
+									WaitForX(1, 500)
 								}
-									
+
 								tTimeout := tTimeout + 1
 								WaitForX(1, 500)
 								if(tTimeout > 60)
@@ -663,42 +668,53 @@ InitMenu:
 								return
 								}
 							}
-							
+
 							;update number of characters
 							UpdateCharacterMenu()
-							
+
 							PlayUtterance("switched_to_Server")
 							sleep 1200
-							
+
 							;jump to char selection
 							gMainMenu.childs[1].onEnter()
-							
+
 							gIgnoreKeyPress := false
 						}
-						gMainMenu.childs[tMainItemN].childs[tLangNumber].childs[tRealmNumber].onAction := Func("gMainMenuchilds4ChildsXChildsYAction").Bind(gMainMenu.childs[tMainItemN].childs[tLangNumber].childs[tRealmNumber], tLangNumber, tRealmNumber)	
+						gMainMenu.childs[tMainItemN].childs[tLangNumber].childs[tRealmNumber].onAction := Func("gMainMenuchilds4ChildsXChildsYAction").Bind(gMainMenu.childs[tMainItemN].childs[tLangNumber].childs[tRealmNumber], tLangNumber, tRealmNumber)
 					}
-				UpdateChilds(gMainMenu.childs[tMainItemN].childs[tLangNumber])				
+				UpdateChilds(gMainMenu.childs[tMainItemN].childs[tLangNumber])
 				;}
-			}			
+			}
 			UpdateChilds(gMainMenu.childs[4])
 
-		/*
 		;menu item 5
 		tMainItemN := 5
 		gMainMenu.childs[tMainItemN] := new baseMenuEntryObject
 		gMainMenu.childs[tMainItemN].parent := gMainMenu
-		gMainMenu.childs[tMainItemN].name := "char löschen"
+		gMainMenu.childs[tMainItemN].name := "delete_char"
 		gMainMenuchilds5Action(this){
-			MsgBox % this.name " onAction NEW char löschen"
+			tRGBColor := GetColorAtUiPos(-280, 724)
+			;MsgBox % tRGBColor.r tRGBColor.g tRGBColor.b
+			if (IsColorRange(tRGBColor.r, 255) = true and IsColorRange(tRGBColor.g, 0) = true and IsColorRange(tRGBColor.b, 0) = true)
+			{
+				;gMainMenu.childs[5].onEnter()
+				;enter char name and press enter or esc to abort
+				tmp := UiToScreenNEW(-280, 724)
+				MouseMove, tmp.X, tmp.Y, 0
+				Send {Click}
+
+				gDeleteCharacterNameFlag := true
+				PlayUtterance("enter_delete_and_press_enter_or_esc_to_cancel")
+				gIgnoreKeyPress := false
+			}
 		}
 		gMainMenu.childs[tMainItemN].onAction := Func("gMainMenuchilds5Action").Bind(gMainMenu.childs[tMainItemN])
-		*/
 
 		UpdateChilds(gMainMenu)
 
 	;gCurrentMenuItem = gMainMenu
 	;gMainMenu.onEnter()
-	
+
 	gIgnoreKeyPress := false
 return
 
@@ -726,7 +742,7 @@ IsWoWWindowFocus()
 	{
 		rReturnValue := true
 	}
-	
+
 	return rReturnValue
 }
 
@@ -771,12 +787,12 @@ IsIngame()
 IsGlue()
 {
 	rReturnValue := false
-	
+
 	if(IsLoginScreen() = true or IsCharSelectionScreen() = true or IsRealmSelectionScreen() = true or IsCharCreationScreen() = true)
 	{
 		rReturnValue := true
 	}
-	
+
 	return rReturnValue
 }
 
@@ -785,7 +801,7 @@ IsLoginScreenInitialStart()
 {
 	gIgnoreKeyPress := true
 	rReturnValue := false
-	
+
 	tRGBColorLogo := GetColorAtUiPos(38,72)
 	tRGBColorQuit := GetColorAtUiPos(-23, 717)
 	tRGBColorCreate := GetColorAtUiPos(28, 550)
@@ -793,9 +809,9 @@ IsLoginScreenInitialStart()
 	{
 		rReturnValue := true
 	}
-	
+
 	gIgnoreKeyPress := false
-	return rReturnValue 
+	return rReturnValue
 }
 
 ;------------------------------------------------------------------------------------------
@@ -803,16 +819,16 @@ IsLoginScreen()
 {
 	gIgnoreKeyPress := true
 	rReturnValue := false
-	
+
 	tRGBColorLogo := GetColorAtUiPos(38,72)
 	tRGBColorQuit := GetColorAtUiPos(-23, 717)
 	if ((IsColorRange(tRGBColorLogo.r, 198) = true and IsColorRange(tRGBColorLogo.g, 227) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorQuit.r, 255) = true and IsColorRange(tRGBColorQuit.g, 0) = true and IsColorRange(tRGBColorQuit.b, 0) = true))
 	{
 		rReturnValue := true
 	}
-	
+
 	gIgnoreKeyPress := false
-	return rReturnValue 
+	return rReturnValue
 }
 
 ;------------------------------------------------------------------------------------------
@@ -820,17 +836,17 @@ IsCharSelectionScreen()
 {
 	gIgnoreKeyPress := true
 	rReturnValue := false
-	
+
 	tRGBColorLogo := GetColorAtUiPos(38,72)
 	tRGBColorAddons := GetColorAtUiPos(49, 722)
-	
+
 	if ((IsColorRange(tRGBColorLogo.r, 198) = true and IsColorRange(tRGBColorLogo.g, 227) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorAddons.r, 255) = true and IsColorRange(tRGBColorAddons.g, 0) = true and IsColorRange(tRGBColorAddons.b, 0) = true))
 	{
 		rReturnValue := true
 	}
-	
+
 	gIgnoreKeyPress := false
-	return rReturnValue 
+	return rReturnValue
 }
 
 ;------------------------------------------------------------------------------------------
@@ -838,16 +854,16 @@ IsCharCreationScreen()
 {
 	gIgnoreKeyPress := true
 	rReturnValue := false
-	
+
 	tRGBColorLogo := GetColorAtUiPos(54, 11)
 	tRGBColorRCBackdrop := GetColorAtUiPos(52, 417)
 	if ((IsColorRange(tRGBColorLogo.r, 198) = true and IsColorRange(tRGBColorLogo.g, 227) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorRCBackdrop.r, 0) = true and IsColorRange(tRGBColorRCBackdrop.g, 0) = true and IsColorRange(tRGBColorRCBackdrop.b, 0) = true))
 	{
 		rReturnValue := true
 	}
-	
+
 	gIgnoreKeyPress := false
-	return rReturnValue 
+	return rReturnValue
 }
 
 ;------------------------------------------------------------------------------------------
@@ -855,16 +871,16 @@ IsRealmSelectionScreen()
 {
 	gIgnoreKeyPress := true
 	rReturnValue := false
-	
+
 	tRGBColorTitleBackdrop := GetColorAtUiPos(9952, 126)
 	tRGBColorListBackdrop := GetColorAtUiPos(404, 145)
 	if ((IsColorRange(tRGBColorTitleBackdrop.r, 0) = true and IsColorRange(tRGBColorTitleBackdrop.g, 56) = true and IsColorRange(tRGBColorTitleBackdrop.b, 0) = true) and (IsColorRange(tRGBColorListBackdrop.r, 40) = true and IsColorRange(tRGBColorListBackdrop.g, 0) = true and IsColorRange(tRGBColorListBackdrop.b, 0) = true))
 	{
 		rReturnValue := true
 	}
-	
+
 	gIgnoreKeyPress := false
-	return rReturnValue 
+	return rReturnValue
 }
 
 
@@ -880,7 +896,7 @@ IsHighPopServerWarning()
 	{
 		rReturnValue := true
 	}
-	
+
 	gIgnoreKeyPress := false
 	return rReturnValue
 }
@@ -901,6 +917,51 @@ IsDisconnected()
 	return rReturnValue
 }
 
+;-----------------------------------------------------------------------------------------------------------------------------------------------------
+IsDeleteButtonEnabled()
+{
+	gIgnoreKeyPress := true
+	rReturnValue := false
+
+	tRGBColor := GetColorAtUiPos(9796, 437)
+	if (IsColorRange(tRGBColor.r, 255) = true and IsColorRange(tRGBColor.g, 0) = true and IsColorRange(tRGBColor.b, 0) = true)
+	{
+		rReturnValue := true
+	}
+
+	gIgnoreKeyPress := false
+	return rReturnValue
+}
+;-----------------------------------------------------------------------------------------------------------------------------------------------------
+IsDeleteButtonDisabled()
+{
+	gIgnoreKeyPress := true
+	rReturnValue := false
+
+	tRGBColor := GetColorAtUiPos(9796, 437)
+	if (IsColorRange(tRGBColor.r, 139) = true and IsColorRange(tRGBColor.g, 139) = true and IsColorRange(tRGBColor.b, 139) = true)
+	{
+		rReturnValue := true
+	}
+
+	gIgnoreKeyPress := false
+	return rReturnValue
+}
+;-----------------------------------------------------------------------------------------------------------------------------------------------------
+IsDeleteCancelButton()
+{
+	gIgnoreKeyPress := true
+	rReturnValue := false
+
+	tRGBColor := GetColorAtUiPos(10195, 437)
+	if (IsColorRange(tRGBColor.r, 255) = true and IsColorRange(tRGBColor.g, 0) = true and IsColorRange(tRGBColor.b, 0) = true)
+	{
+		rReturnValue := true
+	}
+
+	gIgnoreKeyPress := false
+	return rReturnValue
+}
 /*
 ;------------------------------------------------------------------------------------------
 IsEnterCredentials()
@@ -923,7 +984,7 @@ IsEnterCredentials()
 	{
 		rReturnValue := true
 	}
-	
+
 	gIgnoreKeyPress := false
 	return rReturnValue
 }
@@ -941,7 +1002,7 @@ Is12Popup()
 	{
 		rReturnValue := true
 	}
-	
+
 	gIgnoreKeyPress := false
 	return rReturnValue
 }
@@ -957,7 +1018,7 @@ Is22Popup()
 	{
 		rReturnValue := true
 	}
-	
+
 	gIgnoreKeyPress := false
 	return rReturnValue
 }
@@ -972,7 +1033,7 @@ Is11Popup()
 	{
 		rReturnValue := true
 	}
-	
+
 	gIgnoreKeyPress := false
 	return rReturnValue
 }
@@ -987,7 +1048,7 @@ Is21Popup()
 	{
 		rReturnValue := true
 	}
-	
+
 	gIgnoreKeyPress := false
 	return rReturnValue
 }
@@ -1004,7 +1065,7 @@ IsDeleteCharPopup()
 	{
 		rReturnValue := true
 	}
-	
+
 	gIgnoreKeyPress := false
 	return rReturnValue
 }
@@ -1021,7 +1082,7 @@ IsReconnect()
 	{
 		rReturnValue := true
 	}
-	
+
 	gIgnoreKeyPress := false
 	return rReturnValue
 }
@@ -1031,13 +1092,13 @@ IsConnectingToGame()
 {
 	gIgnoreKeyPress := true
 	rReturnValue := false
-	
+
 	tRGBColor := GetColorAtUiPos(570,394)
 	if (tRGBColor.r > 100 and tRGBColor.g < 40 and tRGBColor.b < 40)
 	{
 		rReturnValue := true
 	}
-	
+
 	gIgnoreKeyPress := false
 	return rReturnValue
 }
@@ -1050,7 +1111,7 @@ ScreenToUiNEW(x, y)
 {
 	fUIx := 0
 	oneThirdSW := A_ScreenWidth / 3
-	
+
 	if(x >= (oneThirdSW * 2)) ;anchor right
 	{
 		fUIx := (GetUiX() * (((A_ScreenWidth - x) / (A_ScreenWidth / 100)) / 100)) * -1
@@ -1063,7 +1124,7 @@ ScreenToUiNEW(x, y)
 	{
 		fUIx := GetUiX() * (x / A_ScreenWidth)
 	}
-	
+
 	Array := {X: (fUIx), Y: (768 * (y / A_ScreenHeight))}
 	return Array
 }
@@ -1084,9 +1145,25 @@ UiToScreenNEW(x, y)
 	else if(x < 7000) ;anchor left
 	{
 		fSx := (x / (GetUiX() / 100)) * (A_ScreenWidth / 100)
-	}	
-	
-	Array := {X: (fSx), Y: (A_ScreenHeight * (y / 768))}
+	}
+
+	fSy := (A_ScreenHeight * (y / 768))
+
+	if (GetAR() < 1)
+	{
+
+		PixelGetColor, color, 2, 2, RGB,
+		v1blue := (color & 0xFF)
+		v1green := ((color & 0xFF00) >> 8)
+		v1red := ((color & 0xFF0000) >> 16)
+		if (v1blue < 255 || v1green > 0 || v1red > 0)
+		{
+			fSy := (y * 1.334) + ((A_ScreenHeight - (768 * 1.334)) / 2)
+		}
+	}
+
+	Array := {X: (fSx), Y: (fSy)}
+
 	return Array
 }
 
@@ -1214,7 +1291,7 @@ PlayUtterance(menuName)
 		,Sulfuron:"00088_sku_en_eu.mp3"
 		,spanish:"00089_sku_en_eu.mp3"
 		,Mandokir:"00090_sku_en_eu.mp3"}
-		
+
 
 	soundFiles1 := {1:"00091_sku_en_eu.mp3"
 		,2:"00092_sku_en_eu.mp3"
@@ -1328,8 +1405,18 @@ PlayUtterance(menuName)
 		,wait:"sound-notification6_de.mp3" ;,wait:"00200_sku_en_eu.mp3"
 		,undead:"00201_sku_en_eu.mp3"
 		,empty:"00202_sku_en_eu.mp3"
-		,paused:"00203_sku_en_eu.mp3"}	
+		,paused:"00203_sku_en_eu.mp3"
+		,fail_delete_retype_delete_and_press_enter_or_escape:"2306221.mp3"
+		,aborting_deletion:"2306222.mp3"
+		,enter_delete_and_press_enter_or_esc_to_cancel:"2306223.mp3"
+		,script_exited:"2306224.mp3"
+		,move_character_up:"2306225.mp3"
+		,move_character_down:"2306226.mp3"}
 
+
+OutputDebug % menuName "`n"
+OutputDebug % soundFiles[menuName] "`n"
+OutputDebug % soundFiles1[menuName] "`n"
 
 	if(soundFiles[menuName] = "")
 	{
@@ -1394,20 +1481,20 @@ GetNumberOfChars()
 {
 	gIgnoreKeyPress := true
 	rReturnValue := 0
-	
+
 	tCharSlots := {1:{x:-45,y:100},2:{x:-45,y:155},3:{x:-45,y:210},4:{x:-45,y:270},5:{x:-45,y:330},6:{x:-45,y:380},7:{x:-45,y:450},8:{x:-45,y:510},9:{x:-45,y:560},10:{x:-45,y:610}}
-	
+
 	loop 9
 	{
 		gosub CheckMode
 		if(Mode != 1)
 		{
 			break
-		}			
-		
+		}
+
 		tmp := UiToScreenNEW(tCharSlots[A_Index].x,tCharSlots[A_Index].y)
-		MouseMove, tmp.X, tmp.Y, 0	
-		
+		MouseMove, tmp.X, tmp.Y, 0
+
 		WaitForX(1, 150)
 		tRGBColor := GetColorAtUiPos(tCharSlots[A_Index].x,tCharSlots[A_Index].y)
 		if (tRGBColor.r > 250 and tRGBColor.g > 250 and tRGBColor.b > 250)
@@ -1417,29 +1504,29 @@ GetNumberOfChars()
 		else
 		{
 			gIgnoreKeyPress := false
-			return rReturnValue 
+			return rReturnValue
 		}
 	}
-	
+
 	gIgnoreKeyPress := false
-	return rReturnValue 
+	return rReturnValue
 }
 
 ;------------------------------------------------------------------------------------------
 GetColorAtUiPos(x, y)
 {
 	rReturnValue := {red:-1,green:-1,blue:-1}
-	
+
 	tmp := UiToScreenNEW(x, y)
 
-	if (tmp.X > 0 and tmp.Y > 0) 
+	if (tmp.X > 0 and tmp.Y > 0)
 	{
-		PixelGetColor, color, tmp.X, tmp.Y, RGB, 
-	
+		PixelGetColor, color, tmp.X, tmp.Y, RGB,
+
 		v1blue := (color & 0xFF)
 		v1green := ((color & 0xFF00) >> 8)
-		v1red := ((color & 0xFF0000) >> 16)	
-	
+		v1red := ((color & 0xFF0000) >> 16)
+
 		rReturnValue := {r:v1red,g:v1green,b:v1blue}
 	}
 
@@ -1450,24 +1537,24 @@ GetColorAtUiPos(x, y)
 gMainMenuchilds1ChildsXGenericAction(this, charNumber) ;unfortunately this ugly helper is required as ahk can't directly assign funcs to variables/objects :(
 {
 	tmp := UiToScreenNEW(gCharUIPositions[charNumber].x, gCharUIPositions[charNumber].y)
-	MouseMove, tmp.X, tmp.Y, 0		
+	MouseMove, tmp.X, tmp.Y, 0
 	Send {Click}
-	
+
 	PlayUtterance(charNumber)
 	sleep 600
 	PlayUtterance("selected")
 	sleep 1000
-	
+
 	gMainMenu.childs[2].onEnter()
 }
 UpdateCharacterMenu()
 {
-	WaitForX(1, 100)	
-	
+	WaitForX(1, 100)
+
 	gNumberOfCharsOnCurrentRealm := GetNumberOfChars()
 
 	tMainItemN := 1
-	
+
 	gMainMenu.childs[tMainItemN].childs := []
 	if(gNumberOfCharsOnCurrentRealm = 0)
 	{
@@ -1483,17 +1570,17 @@ UpdateCharacterMenu()
 			{
 				break
 				return
-			}			
+			}
 			if(A_Index <= gNumberOfCharsOnCurrentRealm)
 			{
 				gMainMenu.childs[tMainItemN].childs[A_Index] := new baseMenuEntryObject
 				gMainMenu.childs[tMainItemN].childs[A_Index].parent := gMainMenu.childs[tMainItemN]
 				gMainMenu.childs[tMainItemN].childs[A_Index].name := A_Index
-				gMainMenu.childs[tMainItemN].childs[A_Index].onAction := Func("gMainMenuchilds1ChildsXGenericAction").Bind(gMainMenu.childs[tMainItemN].childs[A_Index], A_Index)	
+				gMainMenu.childs[tMainItemN].childs[A_Index].onAction := Func("gMainMenuchilds1ChildsXGenericAction").Bind(gMainMenu.childs[tMainItemN].childs[A_Index], A_Index)
 			}
 		}
-	}			
-	
+	}
+
 	UpdateChilds(gMainMenu.childs[tMainItemN])
 }
 
@@ -1504,13 +1591,13 @@ WaitForX(waitCycles, ms)
 	loop % waitCycles
 	{
 		gosub CheckMode
-		if (mode != 1) 
+		if (mode != 1)
 		{
 			break
 			return
 		}
-		
-		PlayUtterance("wait")	
+
+		PlayUtterance("wait")
 		sleep ms
 	}
 	gIgnoreKeyPress = false
@@ -1521,16 +1608,16 @@ EnterCharacterNameHandler()
 {
 	gIgnoreKeyPress := true
 	WaitForX(6, 500)
-	
+
 	tFoundSuccessOrFail := false
-	
+
 	while tFoundSuccessOrFail != true
 	{
 		if(mode != 1)
 		{
 			return
 		}
-			
+
 		if(A_Index > 40)
 		{
 			gEnterCharacterNameFlag := false
@@ -1539,11 +1626,11 @@ EnterCharacterNameHandler()
 			sleep 2000
 			gIgnoreKeyPress := false
 			SwitchToMode_1()
-			Pause			
+			Pause
 			return
-		}		
-		WaitForX(1, 500)		
-		
+		}
+		WaitForX(1, 500)
+
 		if(IsCharSelectionScreen() = true)
 		{
 			;char created, we're back to char selection screen
@@ -1552,13 +1639,13 @@ EnterCharacterNameHandler()
 			sleep 1000
 			PlayUtterance("selected")
 			sleep 600
-			
+
 			tFoundSuccessOrFail := true
 			WaitForX(4, 500)
-			
+
 			UpdateCharacterMenu()
 			gMainMenu.childs[2].onEnter()
-			
+
 			gIgnoreKeyPress := false
 			return
 		}
@@ -1568,24 +1655,24 @@ EnterCharacterNameHandler()
 			{
 				tNoSuccessButtonCheck := false
 				tNoSuccessBackdropCheck := false
-				
+
 				If(IsCharCreationScreen() = true and (Is11Popup() = true or Is21Popup() = true))
 				{
 					tNoSuccessButtonCheck := true
 				}
-				
+
 				if((tNoSuccessButtonCheck = true) and IsCharSelectionScreen() = false)
 				{
 					;char name not available or no char name > retry
 					tFoundSuccessOrFail := true
-					
+
 					Send {Enter}
 					WaitForX(1, 300)
 					send ^a
 					WaitForX(1, 100)
 					send ^{Backspace}
 					WaitForX(1, 100)
-					
+
 					PlayUtterance("fail_name")
 				}
 			}
@@ -1595,7 +1682,95 @@ EnterCharacterNameHandler()
 }
 
 ;------------------------------------------------------------------------------------------
-; Select modus Keybinds 
+DeleteCharacterNameHandler()
+{
+	gIgnoreKeyPress := true
+	WaitForX(6, 500)
+
+	tFoundSuccessOrFail := false
+
+	while tFoundSuccessOrFail != true
+	{
+		if(mode != 1)
+		{
+			return
+		}
+
+		if(A_Index > 40)
+		{
+			gDeleteCharacterNameFlag := false
+			gIgnoreKeyPress := false
+			PlayUtterance("fail_connection_restart")
+			sleep 2000
+			gIgnoreKeyPress := false
+			SwitchToMode_1()
+			Pause
+			return
+		}
+		WaitForX(1, 500)
+
+		if(gDeleteCharacterNameFlag = true)
+		{
+			if(IsDeleteButtonDisabled() = true)
+			{
+				WaitForX(1, 300)
+				send ^a
+				WaitForX(1, 100)
+				send ^{Backspace}
+				WaitForX(1, 100)
+
+				PlayUtterance("fail_delete_retype_delete_and_press_enter_or_escape")
+				sleep 3000
+				tFoundSuccessOrFail := true
+
+			}
+			else if(IsDeleteButtonEnabled() = true)
+			{
+				gDeleteCharacterNameFlag := false
+				tmpScreen := UiToScreenNEW(9796, 437)
+				MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
+				PlayUtterance("char_deleted")
+				Send {Click}
+				sleep 1500
+
+				tFoundSuccessOrFail := true
+				WaitForX(4, 500)
+
+				UpdateCharacterMenu()
+				gMainMenu.childs[1].onEnter()
+
+				gIgnoreKeyPress := false
+				return
+			}
+			else
+			{
+				tFoundSuccessOrFail := true
+				WaitForX(4, 500)
+
+				UpdateCharacterMenu()
+				gMainMenu.childs[1].onEnter()
+
+				gIgnoreKeyPress := false
+				return
+			}
+		}
+		else
+		{
+			tFoundSuccessOrFail := true
+			WaitForX(4, 500)
+
+			UpdateCharacterMenu()
+			gMainMenu.childs[1].onEnter()
+
+			gIgnoreKeyPress := false
+			return
+		}
+	}
+	gIgnoreKeyPress := false
+}
+
+;------------------------------------------------------------------------------------------
+; Select modus Keybinds
 ;------------------------------------------------------------------------------------------
 #If mode = 1
 	;------------------------------------------------------------------------------------------
@@ -1605,13 +1780,13 @@ EnterCharacterNameHandler()
 			send {Right}
 			return
 		}
-		
+
 		if (gIgnoreKeyPress = true)
 		{
 			;return
 		}
 
-		if (gCurrentMenuItem not) 
+		if (gCurrentMenuItem not)
 		{
 			return
 		}
@@ -1630,13 +1805,13 @@ EnterCharacterNameHandler()
 			send {Left}
 			return
 		}
-	
+
 		if (gIgnoreKeyPress = true)
 		{
 			;return
 		}
 
-		if (gCurrentMenuItem not) 
+		if (gCurrentMenuItem not)
 		{
 			return
 		}
@@ -1645,7 +1820,7 @@ EnterCharacterNameHandler()
 			gCurrentMenuItem.onEnter()
 			return
 		}
-		
+
 		gCurrentMenuItem.parent.onEnter()
 	return
 
@@ -1657,13 +1832,13 @@ EnterCharacterNameHandler()
 			send {Up}
 			return
 		}
-	
+
 		if (gIgnoreKeyPress = true)
 		{
 			;return
 		}
 
-		if (gCurrentMenuItem not) 
+		if (gCurrentMenuItem not)
 		{
 			return
 		}
@@ -1689,7 +1864,7 @@ EnterCharacterNameHandler()
 			;return
 		}
 
-		if (gCurrentMenuItem not) 
+		if (gCurrentMenuItem not)
 		{
 			return
 		}
@@ -1718,13 +1893,18 @@ EnterCharacterNameHandler()
 		if(gEnterCharacterNameFlag = true)
 		{
 			PlayUtterance("creating_wait")
-			
+
 			send {Enter}
 			EnterCharacterNameHandler()
 		}
+		else if(gDeleteCharacterNameFlag = true)
+		{
+			;send {Enter}
+			DeleteCharacterNameHandler()
+		}
 		else
 		{
-			if (gCurrentMenuItem not) 
+			if (gCurrentMenuItem not)
 			{
 				return
 			}
@@ -1752,11 +1932,11 @@ EnterCharacterNameHandler()
 
 			PlayUtterance("aborting_creation")
 			sleep 1500
-			
+
 			tmp := UiToScreenNEW(-72, 733)
-			MouseMove, tmp.X, tmp.Y, 0		
+			MouseMove, tmp.X, tmp.Y, 0
 			Send {Click}
-			
+
 			tTimeout := 0
 			while(IsCharSelectionScreen() != true)
 			{
@@ -1765,7 +1945,7 @@ EnterCharacterNameHandler()
 				{
 					return
 				}
-					
+
 				tTimeout := tTimeout + 1
 				WaitForX(1, 500)
 				if(tTimeout > 60)
@@ -1777,9 +1957,49 @@ EnterCharacterNameHandler()
 					Pause
 				return
 				}
-			}			
-			
+			}
+
 			gMainMenu.childs[3].onEnter()
+		}
+
+		if(gDeleteCharacterNameFlag = true)
+		{
+			gDeleteCharacterNameFlag := false
+
+			PlayUtterance("aborting_deletion")
+
+			sleep 1000
+
+			if (IsDeleteCancelButton() = true)
+			{
+				tmp := UiToScreenNEW(10195, 437)
+				MouseMove, tmp.X, tmp.Y, 0
+				Send {Click}
+			}
+
+			tTimeout := 0
+			while(IsCharSelectionScreen() != true)
+			{
+				gosub CheckMode
+				if(Mode != 1)
+				{
+					return
+				}
+
+				tTimeout := tTimeout + 1
+				WaitForX(1, 500)
+				if(tTimeout > 60)
+				{
+					PlayUtterance("fail_connection_restart")
+					sleep 2000
+					gIgnoreKeyPress := false
+					SwitchToMode_1()
+					Pause
+				return
+				}
+			}
+
+			gMainMenu.childs[1].onEnter()
 		}
 	return
 #If
@@ -1789,7 +2009,7 @@ EnterCharacterNameHandler()
 ;------------------------------------------------------------------------------------
 #If mode = 0
 	;------------------------------------------------------------------------------------------
-	;view 2 
+	;view 2
 	Numpad7::
 	^+I::
 		gosub CheckMode

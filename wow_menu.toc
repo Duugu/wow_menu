@@ -1,2 +1,2 @@
 ## Interface: 20504
-## Title: wow menu 2.8
+## Title: wow menu 2.10

@@ -1,4 +1,4 @@
-Release: 2.9
+Release: 2.10
 
 WICHTIGE EINRICHTUNGSSCHRITTE. GEHE FOLGENDERMAßEN VOR:
 1. Kopiere den Ordner "wow_menu" aus der heruntergeladenen Zip-Datei in einen beliebigen Ordner auf deinem Computer. 
@@ -49,6 +49,13 @@ Todo/bugs:
 	- add server type to server names
 
 Release notes:
+	2.10
+		- Added a "Delete character" menu option. 
+			The character in the currently selected slot will be deleted. 
+			All characters below the deleted character will be moved one slot up.
+		- Added a voice output to script termination.
+		- Fixed a bug with unusual portrait screen resolutions like 1250 x 1440 (width/height ratio <1). Script should now recognize login mode with those resolutions.
+
 	2.9
 		- Changed the alternative key binds for the numpad 7-9 from Shift to Ctrl + Shift:
 			Control + Shift + I for numpad 7
