@@ -1,4 +1,4 @@
-Release: 2.10
+Release: 2.11
 
 WICHTIGE EINRICHTUNGSSCHRITTE. GEHE FOLGENDERMAßEN VOR:
 1. Kopiere den Ordner "wow_menu" aus der heruntergeladenen Zip-Datei in einen beliebigen Ordner auf deinem Computer. 
@@ -42,13 +42,16 @@ Nach dem Einloggen schaltet das Skript automatisch auf "Spielen". Beim Ausloggen
 
 ----------------------------------------------------------------------------------------
 
-RELEASE NOTES
+Todo/Bugs:
+	- Serverarten zu den Namen hinzufügen.
 
-Todo/bugs:
-	- add "delete character" feature
-	- add server type to server names
+Veröffentlichungshinweise:
+	2.11
+		- Nummernblock 9 wurde geändert. Diese Taste dient nun dazu deinen Char in die Richtung des aktuellen Beacons zu drehen.
+			Die Taste I ist eine alternative Taste für Nummernblock 9 (falls du eine Tastatur ohne Nummernblock hast).
+			Nummernblock 7 und 8 behalten die alte Funktion. (Rechtsklick in die Spielwelt.)
+		- Steuerung + Shift + I / O / P als alternative Tastenbelegung für Nummernblock 7, 8, 9 wurden ersatzlos gestrichen.
 
-Release notes:
 	2.10
 		- Added a "Delete character" menu option. 
 			The character in the currently selected slot will be deleted. 

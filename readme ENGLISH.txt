@@ -1,4 +1,4 @@
-Release: 2.10
+Release: 2.11
 
 IMPORTANT SET UP STEPS. DO THIS:
 1. Copy the folder "wow_menu" from the downloaded .zip file to some local location on your computer.
@@ -50,6 +50,11 @@ Todo/bugs:
 	- add server type to server names
 
 Release notes:
+	2.11
+		- Numpad 9 has been changed. It now is turning your character towards the current beacon.
+			The I key is and an alternative key bind for numpad 9.
+		- Control + Shift + I / O / P have been removed as alternative keys for numpad 7, 8, 9.
+
 	2.10
 		- Added a "Delete character" menu option. 
 			The character in the currently selected slot will be deleted. 

@@ -1,5 +1,5 @@
 ﻿/*
-Release: 2.10
+Release: 2.11
 */
 
 ;------------------------------------------------------------------------------------------
@@ -2004,7 +2004,6 @@ DeleteCharacterNameHandler()
 	;------------------------------------------------------------------------------------------
 	;view 2
 	Numpad7::
-	^+I::
 		gosub CheckMode
 		if(mode = 0)
 		{
@@ -2022,7 +2021,6 @@ DeleteCharacterNameHandler()
 	;------------------------------------------------------------------------------------------
 	;view 4
 	Numpad8::
-	^+O::
 		gosub CheckMode
 		if(mode = 0)
 		{
@@ -2040,18 +2038,25 @@ DeleteCharacterNameHandler()
 	;------------------------------------------------------------------------------------------
 	;view 5
 	Numpad9::
-	^+P::
+	i::
+		Send i
 		gosub CheckMode
 		if(mode = 0)
 		{
-			WinGetPos, X, Y, Width, Height, Program Manager
-			Width := Width / 2
-			Height := Height / 2 + (Height / 12.0)
-			CoordMode, Mouse, Screen
-			MouseMove, %Width%, %Height%
-			Send ^{Numpad9}
-			Sleep, 500
-			SendEvent {Click, right}
+			tmpUI := ScreenToUiNEW(1, 20)
+			tRGBColor := GetColorAtUiPos(tmpUI.x, tmpUI.y)
+			if (IsColorRange(tRGBColor.r, 255) = true and IsColorRange(tRGBColor.g, 0) = true and IsColorRange(tRGBColor.b, 0) = true)
+			{
+				WinGetPos, X, Y, Width, Height, Program Manager
+				Width := Width / 2
+				Height := 5
+				CoordMode, Mouse, Screen
+				MouseMove, %Width%, %Height%
+				Sleep, 250
+				SendEvent {Click, right}
+				Sleep, 1
+				MouseMove, %Width%, %Height%
+			}
 		}
 	return
 #If
