@@ -2066,5 +2066,4 @@ DeleteCharacterNameHandler()
 			}
 		}
 	return
-
 #If
