@@ -1,4 +1,4 @@
-Release: 2.11
+Release: 2.12
 
 IMPORTANT SET UP STEPS. DO THIS:
 1. Copy the folder "wow_menu" from the downloaded .zip file to some local location on your computer.
