@@ -1,4 +1,4 @@
-Release: 2.12
+Release: 2.13
 
 IMPORTANT SET UP STEPS. DO THIS:
 1. Copy the folder "wow_menu" from the downloaded .zip file to some local location on your computer.
@@ -50,6 +50,9 @@ Todo/bugs:
 	- add server type to server names
 
 Release notes:
+	2.13
+		- Updated the regions and server lists to reflect the recent server changes. Switching server is working again.
+
 	2.11
 		- Numpad 9 has been changed. It now is turning your character towards the current beacon.
 			The I key is and an alternative key bind for numpad 9.

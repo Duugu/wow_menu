@@ -1,5 +1,5 @@
 ﻿/*
-Release: 2.12
+Release: 2.13
 */
 
 ;------------------------------------------------------------------------------------------
@@ -382,14 +382,12 @@ InitMenu:
 	global gCharUIPositions := {1:{x:-45,y:106},2:{x:-45,y:162},3:{x:-45,y:218},4:{x:-45,y:274},5:{x:-45,y:330},6:{x:-45,y:386},7:{x:-45,y:442},8:{x:-45,y:498},9:{x:-45,y:554},10:{x:-45,y:610}}
 
 
-		global tRealmLangs := {1:{name:"USA_West",x:450,y:636},2:{name:"USA_East",x:9827,y:636},3:{name:"Oceanic",x:9899,y:636},4:{name:"Latin_America",x:9968,y:636},5:{name:"Brasil",x:10083,y:636}}
+		global tRealmLangs := {1:{name:"USA_West",x:450,y:636},2:{name:"USA_East",x:9827,y:636},3:{name:"Oceanic",x:9899,y:636}}
 
 		global tServerNames := {}
-		tServerNames[1] := {1:{name:"Anathema",x:9795,y:192},2:{name:"Arcanite_Reaper",x:9795,y:212},3:{name:"Atiesh",x:9795,y:232},4:{name:"Azursong",x:9795,y:252},5:{name:"Bigglesworth",x:9795,y:272},6:{name:"Biaumeux",x:9795,y:292},7:{name:"Fairbanks",x:9795,y:312},8:{name:"Grobbulus",x:9795,y:332},9:{name:"Kurinnaxx",x:9795,y:352},10:{name:"Myzrael",x:9795,y:372},11:{name:"Old_Blanchy",x:9795,y:392},12:{name:"Rattlegore",x:9795,y:412},13:{name:"Smolderweb",x:9795,y:432},14:{name:"Thunderfury",x:9795,y:452},15:{name:"Whitemane",x:9795,y:472}}
-		tServerNames[2] := {1:{name:"Ashkandi",x:9795,y:192},2:{name:"Benediction",x:9795,y:212},3:{name:"Bloodsail_Buccaneers",x:9795,y:232},4:{name:"Deviate_Delight",x:9795,y:252},5:{name:"Earthfury",x:9795,y:272},6:{name:"Faerlina",x:9795,y:292},7:{name:"Heartseeker",x:9795,y:312},8:{name:"Herod",x:9795,y:332},9:{name:"Incendius",x:9795,y:352},10:{name:"Kirtonos",x:9795,y:372},11:{name:"Krmocrush",x:9795,y:392},12:{name:"Mankrik",x:9795,y:412},13:{name:"Netherwind",x:9795,y:432},14:{name:"Pagle",x:9795,y:452},15:{name:"Skeram",x:9795,y:472},16:{name:"Stalagg",x:9795,y:492},17:{name:"Sulfuras",x:9795,y:512},18:{name:"Thalnos",x:9795,y:532},19:{name:"Westfall",x:9795,y:552},20:{name:"Windseeker",x:9795,y:572}}
+		tServerNames[1] := {1:{name:"Atiesh",x:9795,y:192},2:{name:"Azursong",x:9795,y:212},3:{name:"Grobbulus",x:9795,y:232},4:{name:"Myzrael",x:9795,y:252},5:{name:"Old_Blanchy",x:9795,y:272},6:{name:"Whitemane",x:9795,y:292}}
+		tServerNames[2] := {1:{name:"Ashkandi",x:9795,y:192},2:{name:"Benediction",x:9795,y:212},3:{name:"Bloodsail_Buccaneers",x:9795,y:232},4:{name:"Earthfury",x:9795,y:252},5:{name:"Faerlina",x:9795,y:272},6:{name:"Mankrik",x:9795,y:292},7:{name:"Pagle",x:9795,y:312},8:{name:"Sulfuras",x:9795,y:332},9:{name:"Westfall",x:9795,y:352},10:{name:"Windseeker",x:9795,y:372}}
 		tServerNames[3] := {1:{name:"Argual",x:9795,y:192},2:{name:"Felstriker",x:9795,y:212},3:{name:"Remulos",x:9795,y:232},4:{name:"Yojamba",x:9795,y:252}}
-		tServerNames[4] := {1:{name:"Loatheb",x:9795,y:192}}
-		tServerNames[5] := {1:{name:"Sul_thraze",x:9795,y:192}}
 
 	global tGenders := {1:{name:"male",x:102,y:420},2:{name:"female",x:146,y:420}}
 	global tRaces := {1:{name:"human",x:81,y:150,classes:{1:"warrior",2:"paladin",3:"rogue",4:"priest",5:"mage",6:"warlock"}},2:{name:"dwarf",x:81,y:202,classes:{1:"warrior",2:"paladin",3:"hunter",4:"rogue",5:"priest"}},3:{name:"nightelf",x:81,y:254,classes:{1:"warrior",2:"hunter",3:"rogue",4:"priest",5:"druid"}},4:{name:"gnome",x:81,y:306,classes:{1:"warrior",2:"rogue",3:"mage",4:"warlock"}},5:{name:"draenei",x:81,y:358,classes:{1:"warrior",2:"paladin",3:"hunter",4:"priest",5:"shaman",6:"mage"}},6:{name:"orc",x:177,y:150,classes:{1:"warrior",2:"hunter",3:"rogue",4:"shaman",5:"warlock"}},7:{name:"undead",x:177,y:202,classes:{1:"warrior",2:"rogue",3:"priest",4:"mage",5:"warlock"}},8:{name:"tauren",x:177,y:254,classes:{1:"warrior",2:"hunter",3:"shaman",4:"druid"}},9:{name:"troll",x:177,y:306,classes:{1:"warrior",2:"hunter",3:"rogue",4:"priest",5:"shaman",6:"mage"}},10:{name:"bloodelf",x:177,y:358,classes:{1:"paladin",2:"hunter",3:"rogue",4:"priest",5:"mage",6:"warlock"}}}

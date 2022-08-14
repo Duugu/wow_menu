@@ -1,4 +1,4 @@
-Release: 2.12
+Release: 2.13
 
 WICHTIGE EINRICHTUNGSSCHRITTE. GEHE FOLGENDERMAßEN VOR:
 1. Kopiere den Ordner "wow_menu" aus der heruntergeladenen Zip-Datei in einen beliebigen Ordner auf deinem Computer. 
@@ -46,6 +46,9 @@ Todo/Bugs:
 	- Serverarten zu den Namen hinzufügen.
 
 Veröffentlichungshinweise:
+	2.13
+		- Serverliste entsprechend der kürzlichen Serverkonsolidierung aktualisiert. Server wechsel funktioniert wieder.
+
 	2.11
 		- Nummernblock 9 wurde geändert. Diese Taste dient nun dazu deinen Char in die Richtung des aktuellen Beacons zu drehen.
 			Die Taste I ist eine alternative Taste für Nummernblock 9 (falls du eine Tastatur ohne Nummernblock hast).
