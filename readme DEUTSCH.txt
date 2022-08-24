@@ -1,4 +1,4 @@
-Release: 2.13
+Release: 2.14
 
 WICHTIGE EINRICHTUNGSSCHRITTE. GEHE FOLGENDERMAßEN VOR:
 1. Kopiere den Ordner "wow_menu" aus der heruntergeladenen Zip-Datei in einen beliebigen Ordner auf deinem Computer. 
