@@ -1,5 +1,5 @@
 ﻿/*
-Release: 2.13
+Release: 2.14
 */
 
 ;------------------------------------------------------------------------------------------
@@ -382,7 +382,7 @@ InitMenu:
 	global tRealmLangs := {1:{name:"english",x:450,y:636},2:{name:"german",x:9827,y:636},3:{name:"french",x:9899,y:636},4:{name:"spanish",x:9968,y:636}}
 
 	global tServerNames := {}
-	tServerNames[1] := {1:{name:"Ashbringer",x:9795,y:192},2:{name:"Earthshaker",x:9795,y:212},3:{name:"Firemaw",x:9795,y:232},4:{name:"Gehennas",x:9795,y:252},5:{name:"Golemagg",x:9795,y:272},6:{name:"Hydraxian_Waterlords",x:9795,y:292},7:{name:"Judgement",x:9795,y:312},8:{name:"Mirage_Raceway",x:9795,y:332},9:{name:"Mograine",x:9795,y:352},10:{name:"Nethergarde_Keep",x:9795,y:372},11:{name:"Pyrewood_Village",x:9795,y:392},12:{name:"Shazzrah",x:9795,y:412}}
+	tServerNames[1] := {1:{name:"Ashbringer",x:9795,y:192},2:{name:"Earthshaker",x:9795,y:212},3:{name:"Firemaw",x:9795,y:232},4:{name:"Gehennas",x:9795,y:252},5:{name:"Golemagg",x:9795,y:272},6:{name:"Hydraxian_Waterlords",x:9795,y:292},7:{name:"Mirage_Raceway",x:9795,y:312},8:{name:"Mograine",x:9795,y:332},9:{name:"Nethergarde_Keep",x:9795,y:352},10:{name:"Pyrewood_Village",x:9795,y:372},11:{name:"Shazzrah",x:9795,y:392}}
 	tServerNames[2] := {1:{name:"everlook",x:9795,y:192},2:{name:"lakeshire",x:9795,y:212},3:{name:"patchwerk",x:9795,y:232},4:{name:"razorfen",x:9795,y:252},5:{name:"transcendence",x:9795,y:272},6:{name:"venoxis",x:9795,y:292}}
 	tServerNames[3] := {1:{name:"Amnennar",x:9795,y:192},2:{name:"Auberdine",x:9795,y:212},3:{name:"Sulfuron",x:9795,y:232}}
 	tServerNames[4] := {1:{name:"Mandokir",x:9795,y:192}}

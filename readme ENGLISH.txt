@@ -50,6 +50,9 @@ Todo/bugs:
 	- add server type to server names
 
 Release notes:
+	2.14
+		- Updated the server list for EU EN.
+
 	2.13
 		- Updated the regions and server lists to reflect the recent server changes. Switching server is working again.
 

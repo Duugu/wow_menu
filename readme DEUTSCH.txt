@@ -46,6 +46,8 @@ Todo/Bugs:
 	- Serverarten zu den Namen hinzufügen.
 
 Veröffentlichungshinweise:
+	2.14
+		- Serverliste für EU EN aktualisiert.
 	2.13
 		- Serverliste entsprechend der kürzlichen Serverkonsolidierung aktualisiert. Server wechsel funktioniert wieder.
 
