@@ -1,4 +1,4 @@
-Release: 2.14
+Release: 3.1
 
 IMPORTANT SET UP STEPS. DO THIS:
 1. Copy the folder "wow_menu" from the downloaded .zip file to some local location on your computer.
@@ -37,7 +37,7 @@ After logging in, the script automatically switches to "Play" mode. When logging
 
 3. Requirements:
 
-- The script is only working with WoW TBC on Windows. No Mac, no Retail.
+- The script is only working with WoW WotLK on Windows. No Mac, no Retail.
 - Do not move the script file and its folder. Create a shortcut to the script file, if you would like to access it more easily.
 - The script requires that you are playing in fullscreen mode. (This is the default).
 - The script requires the same screen resolution in WoW as the Windows screen resolution is (this is the default).
@@ -50,74 +50,7 @@ Todo/bugs:
 	- add server type to server names
 
 Release notes:
-	2.14
-		- Updated the server list for EU EN.
-
-	2.13
-		- Updated the regions and server lists to reflect the recent server changes. Switching server is working again.
-
-	2.11
-		- Numpad 9 has been changed. It now is turning your character towards the current beacon.
-			The I key is and an alternative key bind for numpad 9.
-		- Control + Shift + I / O / P have been removed as alternative keys for numpad 7, 8, 9.
-
-	2.10
-		- Added a "Delete character" menu option. 
-			The character in the currently selected slot will be deleted. 
-			All characters below the deleted character will be moved one slot up.
-		- Added a voice output to script termination.
-		- Fixed a bug with unusual portrait screen resolutions like 1250 x 1440 (width/height ratio <1). Script should now recognize login mode with those resolutions.
-
-	2.9
-		- Changed the alternative key binds for the numpad 7-9 from Shift to Ctrl + Shift:
-			Control + Shift + I for numpad 7
-			Control + Shift + O for numpad 8
-			Control + Shift + P for numpad 9
-
-
-	2.8
-		- Added alternative key binds for the numpad 7-9 feature:
-			Shift + I for numpad 7
-			Shift + O for numpad 8
-			Shift + P for numpad 9
-		- Fixed an issue with switching realm at 1024x768 resolution
-
-	2.5
-		- Re-designed the script to be more reliable and much faster.
-		- The script stops auto switching between gaming/login mode if you do use ALT + F1 to manually switch the mode. You need to restart the script to turn auto switching on again.
-		- Changed the "script is processing" sound to something (water drop) that is better to hear is there's ingame music playing.
-		- The script now is replacing a lot of textures on login and char selection screens. If a sighted person asks why the UI looks that "broken", that is the reason. It's a feature, not a bug.
-
-	1.7
-		- Added addition gaming mode detection pixel at lower left corner of the screen, just in case that the upper left corner is covered by overlays from streaming software (requires Sku r25.9).
-		- Optimized the detection. Script shouldn't unintentionally click on "Delete character" anymore.
-
-	1.6
-		- Added English TTS audio data
-		- Added EN EU and EN US region / realm lists
-		- Splitted the script into separate script for EN_EU, EN_US, DE_EU.
-		- Optimized the recognition of "Login" and "Game" mode
-		- Fixed a bunch of issues with mode detection
-
-	1.5
-		- fixed an issue with not working enter key in menus after char creation
-
-	1.4
-		- the script is not anymore incorrectly detecting anything with the string "World of Warcraft" in a window title as the game window
-
-	1.3
-		- the volume of the "load" sound was decreased
-		- new output "paused" if the wow window lost the focus
-		- script now automatically detects and switches the mode (login, play, paused); ctrl + f1 to manually switch modes is still available, but shouldn't be required anymore
-
-	1.2
-		- new shortcut alt + esc to exit the script
-		- script stops all activies in login mode and switches to play mode if wow has lost the focus.
-		- script ignores arrow, enter, and esc keys if wow hasn't the focus
-
-	1.1
-		- hotkey to switch modes changed from numpadsub to alt+f1
-		- script now considers all 10 character slots per server instead of 9
-		- numpad8 testing keybind removed
-		- testing tooltip removed
-		- code cleanup
+	3.1
+		- Updated list for US west, US east and EU English with new servers
+	3.0
+		- Initial release for WotLK

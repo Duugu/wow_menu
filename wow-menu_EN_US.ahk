@@ -1,5 +1,5 @@
 ﻿/*
-Release: 2.14
+Release: 3.1
 */
 
 ;------------------------------------------------------------------------------------------
@@ -270,7 +270,7 @@ InitLogin()
 	}
 	else if(IsCharCreationScreen() = true)
 	{
-		tmpScreen := UiToScreenNEW(-72, 733)
+		tmpScreen := UiToScreenNEW(-160, 749)
 		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
 		Send {Click} ;back
 
@@ -385,12 +385,26 @@ InitMenu:
 		global tRealmLangs := {1:{name:"USA_West",x:450,y:636},2:{name:"USA_East",x:9827,y:636},3:{name:"Oceanic",x:9899,y:636}}
 
 		global tServerNames := {}
-		tServerNames[1] := {1:{name:"Atiesh",x:9795,y:192},2:{name:"Azursong",x:9795,y:212},3:{name:"Grobbulus",x:9795,y:232},4:{name:"Myzrael",x:9795,y:252},5:{name:"Old_Blanchy",x:9795,y:272},6:{name:"Whitemane",x:9795,y:292}}
-		tServerNames[2] := {1:{name:"Ashkandi",x:9795,y:192},2:{name:"Benediction",x:9795,y:212},3:{name:"Bloodsail_Buccaneers",x:9795,y:232},4:{name:"Earthfury",x:9795,y:252},5:{name:"Faerlina",x:9795,y:272},6:{name:"Mankrik",x:9795,y:292},7:{name:"Pagle",x:9795,y:312},8:{name:"Sulfuras",x:9795,y:332},9:{name:"Westfall",x:9795,y:352},10:{name:"Windseeker",x:9795,y:372}}
+		;west
+		tServerNames[1] := {1:{name:"Atiesh",x:9795,y:192},2:{name:"Azursong",x:9795,y:212},3:{name:"Grobbulus",x:9795,y:232},4:{name:"Myzrael",x:9795,y:252},5:{name:"Old_Blanchy",x:9795,y:272},6:{name:"Skyfury",x:9795,y:292}7:{name:"Whitemane",x:9795,y:312}}
+
+		;east
+		tServerNames[2] := {1:{name:"Ashkandi",x:9795,y:192},2:{name:"Benediction",x:9795,y:212},3:{name:"Bloodsail_Buccaneers",x:9795,y:232},4:{name:"Earthfury",x:9795,y:252},5:{name:"Faerlina",x:9795,y:272},6:{name:"Maladath",x:9795,y:292},7:{name:"Mankrik",x:9795,y:312},8:{name:"Pagle",x:9795,y:332},9:{name:"Sulfuras",x:9795,y:352},10:{name:"Westfall",x:9795,y:372},11:{name:"Windseeker",x:9795,y:392}}
+
 		tServerNames[3] := {1:{name:"Argual",x:9795,y:192},2:{name:"Felstriker",x:9795,y:212},3:{name:"Remulos",x:9795,y:232},4:{name:"Yojamba",x:9795,y:252}}
 
-	global tGenders := {1:{name:"male",x:102,y:420},2:{name:"female",x:146,y:420}}
-	global tRaces := {1:{name:"human",x:81,y:150,classes:{1:"warrior",2:"paladin",3:"rogue",4:"priest",5:"mage",6:"warlock"}},2:{name:"dwarf",x:81,y:202,classes:{1:"warrior",2:"paladin",3:"hunter",4:"rogue",5:"priest"}},3:{name:"nightelf",x:81,y:254,classes:{1:"warrior",2:"hunter",3:"rogue",4:"priest",5:"druid"}},4:{name:"gnome",x:81,y:306,classes:{1:"warrior",2:"rogue",3:"mage",4:"warlock"}},5:{name:"draenei",x:81,y:358,classes:{1:"warrior",2:"paladin",3:"hunter",4:"priest",5:"shaman",6:"mage"}},6:{name:"orc",x:177,y:150,classes:{1:"warrior",2:"hunter",3:"rogue",4:"shaman",5:"warlock"}},7:{name:"undead",x:177,y:202,classes:{1:"warrior",2:"rogue",3:"priest",4:"mage",5:"warlock"}},8:{name:"tauren",x:177,y:254,classes:{1:"warrior",2:"hunter",3:"shaman",4:"druid"}},9:{name:"troll",x:177,y:306,classes:{1:"warrior",2:"hunter",3:"rogue",4:"priest",5:"shaman",6:"mage"}},10:{name:"bloodelf",x:177,y:358,classes:{1:"paladin",2:"hunter",3:"rogue",4:"priest",5:"mage",6:"warlock"}}}
+	global tGenders := {1:{name:"male",x:112,y:520},2:{name:"female",x:156,y:520}}
+	global tRaces := {}
+	tRaces[1] := {name:"human",x:85,y:85,classes:{1:"warrior",2:"paladin",3:"NV",4:"rogue",5:"priest",6:"deathknight",7:"NV",8:"mage",9:"warlock",10:"NV"}}
+	tRaces[2] := {name:"dwarf",x:85,y:145,classes:{1:"warrior",2:"paladin",3:"hunter",4:"rogue",5:"priest",6:"deathknight",7:"NV",8:"NV",9:"NV",10:"NV"}}
+	tRaces[3] := {name:"nightelf",x:85,y:205,classes:{1:"warrior",2:"NV",3:"hunter",4:"rogue",5:"priest",6:"deathknight",7:"NV",8:"NV",9:"NV",10:"druid"}}
+	tRaces[4] := {name:"gnome",x:85,y:265,classes:{1:"warrior",2:"NV",3:"NV",4:"rogue",5:"NV",6:"deathknight",7:"NV",8:"mage",9:"warlock",10:"NV"}}
+	tRaces[5] := {name:"draenei",x:85,y:315,classes:{1:"warrior",2:"paladin",3:"hunter",4:"NV",5:"priest",6:"deathknight",7:"shaman",8:"mage",9:"NV",10:"NV"}}
+	tRaces[6] := {name:"orc",x:185,y:85,classes:{1:"warrior",2:"NV",3:"hunter",4:"rogue",5:"NV",6:"deathknight",7:"shaman",8:"NV",9:"warlock",10:"NV"}}
+	tRaces[7] := {name:"undead",x:185,y:145,classes:{1:"warrior",2:"NV",3:"NV",4:"rogue",5:"priest",6:"deathknight",7:"NV",8:"mage",9:"warlock",10:"NV"}}
+	tRaces[8] := {name:"tauren",x:185,y:205,classes:{1:"warrior",2:"NV",3:"hunter",4:"NV",5:"NV",6:"deathknight",7:"shaman",8:"NV",9:"NV",10:"druid"}}
+	tRaces[9] := {name:"troll",x:185,y:265,classes:{1:"warrior",2:"NV",3:"hunter",4:"rogue",5:"priest",6:"deathknight",7:"shaman",8:"mage",9:"NV",10:"NV"}}
+	tRaces[10] := {name:"NV",x:185,y:315,classes:{1:"warrior",2:"paladin",3:"hunter",4:"rogue",5:"priest",6:"deathknight",7:"NV",8:"mage",9:"warlock",10:"NV"}}
 
 	;build the audio menu
 	;main
@@ -452,6 +466,8 @@ InitMenu:
 						gMainMenu.childs[tMainItemN].childs[tGenderNumber].childs[tRaceNumber].childs[tClassNumber] := new baseMenuEntryObject
 						gMainMenu.childs[tMainItemN].childs[tGenderNumber].childs[tRaceNumber].childs[tClassNumber].parent := gMainMenu.childs[tMainItemN].childs[tGenderNumber].childs[tRaceNumber]
 						gMainMenu.childs[tMainItemN].childs[tGenderNumber].childs[tRaceNumber].childs[tClassNumber].name := tRaces[tRaceNumber].classes[tClassNumber]
+if(tRaces[tRaceNumber].classes[tClassNumber] != "NV")
+{
 						gMainMenuchildsGenericCreateCharAction(this, genderNumber, raceNumber, classNumber)
 						{
 							gNumberOfCharsOnCurrentRealm := GetNumberOfChars()
@@ -491,7 +507,7 @@ InitMenu:
 								Send {Click}
 								WaitForX(2, 500)
 
-								tClassPositions := {1:{x:84,y:476},2:{x:135,y:476},3:{x:181,y:476},4:{x:87,y:520},5:{x:133,y:520},6:{x:181,y:520}}
+								tClassPositions := {1:{x:55,y:418},2:{x:95,y:418},3:{x:135,y:418},4:{x:180,y:418},5:{x:225,y:418},6:{x:55,y:456},7:{x:95,y:456},9:{x:135,y:456},9:{x:180,y:456},10:{x:225,y:456}}
 								tmp := UiToScreenNEW(tClassPositions[classNumber].x, tClassPositions[classNumber].y)
 								MouseMove, tmp.X, tmp.Y, 0
 								Send {Click}
@@ -522,6 +538,7 @@ InitMenu:
 
 						}
 						gMainMenu.childs[tMainItemN].childs[tGenderNumber].childs[tRaceNumber].childs[tClassNumber].onAction := Func("gMainMenuchildsGenericCreateCharAction").Bind(gMainMenu.childs[tMainItemN].childs[tGenderNumber].childs[tRaceNumber].childs[tClassNumber], tGenderNumber, tRaceNumber, tClassNumber)
+}
 					}
 					UpdateChilds(gMainMenu.childs[tMainItemN].childs[tGenderNumber].childs[tRaceNumber])
 				}
@@ -853,8 +870,8 @@ IsCharCreationScreen()
 	gIgnoreKeyPress := true
 	rReturnValue := false
 
-	tRGBColorLogo := GetColorAtUiPos(54, 11)
-	tRGBColorRCBackdrop := GetColorAtUiPos(52, 417)
+	tRGBColorLogo := GetColorAtUiPos(-191,51)
+	tRGBColorRCBackdrop := GetColorAtUiPos(52, 357)
 	if ((IsColorRange(tRGBColorLogo.r, 198) = true and IsColorRange(tRGBColorLogo.g, 227) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorRCBackdrop.r, 0) = true and IsColorRange(tRGBColorRCBackdrop.g, 0) = true and IsColorRange(tRGBColorRCBackdrop.b, 0) = true))
 	{
 		rReturnValue := true
@@ -1288,7 +1305,13 @@ PlayUtterance(menuName)
 		,Finkle:"00087_sku_en_eu.mp3"
 		,Sulfuron:"00088_sku_en_eu.mp3"
 		,spanish:"00089_sku_en_eu.mp3"
-		,Mandokir:"00090_sku_en_eu.mp3"}
+		,Mandokir:"00090_sku_en_eu.mp3"
+		,NV:"00001_nv_en.mp3"
+		,Skyfury:"00002_Skyfury_en.mp3"
+		,Maladath:"00003_Maladath_en.mp3"
+		,Thekal:"00004_Thekal_en.mp3"
+		,Giantstalker:"00005_Giantstalker_en.mp3"
+		,deathknight:"00006_deathknight_en.mp3"}
 
 
 	soundFiles1 := {1:"00091_sku_en_eu.mp3"
@@ -1931,7 +1954,7 @@ DeleteCharacterNameHandler()
 			PlayUtterance("aborting_creation")
 			sleep 1500
 
-			tmp := UiToScreenNEW(-72, 733)
+			tmp := UiToScreenNEW(-160, 749)
 			MouseMove, tmp.X, tmp.Y, 0
 			Send {Click}
 

@@ -1,4 +1,4 @@
-Release: 2.14
+Release: 3.1
 
 WICHTIGE EINRICHTUNGSSCHRITTE. GEHE FOLGENDERMAßEN VOR:
 1. Kopiere den Ordner "wow_menu" aus der heruntergeladenen Zip-Datei in einen beliebigen Ordner auf deinem Computer. 
@@ -35,7 +35,7 @@ Nach dem Einloggen schaltet das Skript automatisch auf "Spielen". Beim Ausloggen
 
 3. Voraussetzungen:
 
-- Das Skript funktioniert nur unter Windows, nur mit WoW TBC und nur mit dem deutschen WoW-Client.
+- Das Skript funktioniert nur unter Windows, nur mit WoW WotLK und nur mit dem deutschen WoW-Client.
 - Du darfst das Skript und seinen Ordner nicht verschieben. Wenn du es einfacher starten möchtest, kannst du dir eine Verknüpfung zu deinem Skript erstellen.
 - Das Skript erfordert, dass du WoW im Vollbildmodus spielst. (Das ist standardmäßig so.)
 - Das Skript erfordert, dass du in WoW dieselbe Auflösung wie in Windows verwendest (das ist standardmäßig so).
@@ -46,73 +46,7 @@ Todo/Bugs:
 	- Serverarten zu den Namen hinzufügen.
 
 Veröffentlichungshinweise:
-	2.14
-		- Serverliste für EU EN aktualisiert.
-	2.13
-		- Serverliste entsprechend der kürzlichen Serverkonsolidierung aktualisiert. Server wechsel funktioniert wieder.
-
-	2.11
-		- Nummernblock 9 wurde geändert. Diese Taste dient nun dazu deinen Char in die Richtung des aktuellen Beacons zu drehen.
-			Die Taste I ist eine alternative Taste für Nummernblock 9 (falls du eine Tastatur ohne Nummernblock hast).
-			Nummernblock 7 und 8 behalten die alte Funktion. (Rechtsklick in die Spielwelt.)
-		- Steuerung + Shift + I / O / P als alternative Tastenbelegung für Nummernblock 7, 8, 9 wurden ersatzlos gestrichen.
-
-	2.10
-		- Added a "Delete character" menu option. 
-			The character in the currently selected slot will be deleted. 
-			All characters below the deleted character will be moved one slot up.
-		- Added a voice output to script termination.
-		- Fixed a bug with unusual portrait screen resolutions like 1250 x 1440 (width/height ratio <1). Script should now recognize login mode with those resolutions.
-
-	2.9
-		- Changed the alternative key binds for the numpad 7-9 from Shift to Ctrl + Shift:
-			Control + Shift + I for numpad 7
-			Control + Shift + O for numpad 8
-			Control + Shift + P for numpad 9
-
-	2.8
-		- Added alternative key binds for the numpad 7-9 feature:
-			Shift + I for numpad 7
-			Shift + O for numpad 8
-			Shift + P for numpad 9
-		- Fixed an issue with switching realm at 1024x768 resolution
-
-	2.5
-		- Re-designed the script to be more reliable and much faster.
-		- The script stops auto switching between gaming/login mode if you do use ALT + F1 to manually switch the mode. You need to restart the script to turn auto switching on again.
-		- Changed the "script is processing" sound to something (water drop) that is better to hear is there's ingame music playing.
-		- The script now is replacing a lot of textures on login and char selection screens. If a sighted person asks why the UI looks that "broken", that is the reason. It's a feature, not a bug.
-
-	1.7
-		- Added addition gaming mode detection pixel at lower left corner of the screen, just in case that the upper left corner is covered by overlays from streaming software (requires Sku r25.9).
-		- Optimized the detection. Script shouldn't unintentionally click on "Delete character" anymore.
-
-	1.6
-		- Added English TTS audio data
-		- Added EN EU and EN US region / realm lists
-		- Splitted the script into separate script for EN_EU, EN_US, DE_EU.
-		- Optimized the recognition of "Login" and "Game" mode
-		- Fixed a bunch of issues with mode detection
-
-	1.5
-		- fixed an issue with not working enter key in menus after char creation
-
-	1.4
-		- the script is not anymore incorrectly detecting anything with the string "World of Warcraft" in a window title as the game window
-
-	1.3
-		- the volume of the "load" sound was decreased
-		- new output "paused" if the wow window lost the focus
-		- script now automatically detects and switches the mode (login, play, paused); ctrl + f1 to manually switch modes is still available, but shouldn't be required anymore
-
-	1.2
-		- new shortcut alt + esc to exit the script
-		- script stops all activies in login mode and switches to play mode if wow has lost the focus.
-		- script ignores arrow, enter, and esc keys if wow hasn't the focus
-
-	1.1
-		- hotkey to switch modes changed from numpadsub to alt+f1
-		- script now considers all 10 character slots per server instead of 9
-		- numpad8 testing keybind removed
-		- testing tooltip removed
-		- code cleanup
+	3.1
+		- Listen für US west, US east und EU Englisch mit neuen Server aktualisiert
+	3.0
+		- Erste Version für WotLK
