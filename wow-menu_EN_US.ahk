@@ -1,5 +1,5 @@
 ﻿/*
-Release: 3.1
+Release: 3.2
 */
 
 ;------------------------------------------------------------------------------------------
@@ -148,8 +148,58 @@ InitLogin()
 
 	StartOver:
 
+	if(IsOutdatedAddonsWarning() = true)
+	{
+		tmpScreen := UiToScreenNEW(740,410)
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
+		Send {Click}
+		Sleep, 1000
+		tmpScreen := UiToScreenNEW(640,440)
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
+		Send {Click}
+	}
+	if(IsContract() = true)
+	{
+		tmp := UiToScreenNEW(630, 458)
+		MouseMove, tmp.X, tmp.Y, 0
+		sleep, 500
+		Loop 5
+			Click, WheelDown
+
+		sleep, 200
+		tmp := UiToScreenNEW(715, 150)
+		MouseMove, tmp.X, tmp.Y, 0
+		sleep, 100
+		Send {Click}
+	}
+
 	if(IsCharSelectionScreen() = true)
 	{
+		if(IsOutdatedAddonsWarning() = true)
+		{
+			tmpScreen := UiToScreenNEW(740,410)
+			MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
+			Send {Click}
+			Sleep, 1000
+			tmpScreen := UiToScreenNEW(640,440)
+			MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
+			Send {Click}
+		}
+		if(IsContract() = true)
+		{
+			tmp := UiToScreenNEW(715,150)
+			MouseMove, tmp.X, tmp.Y, 0
+			sleep, 500
+			Loop 5
+				Click, WheelDown
+
+			sleep, 200
+			tmp := UiToScreenNEW(630, 458)
+			MouseMove, tmp.X, tmp.Y, 0
+			sleep, 100
+			Send {Click}
+		}
+
 		if(IsDeleteCharPopup() = true)
 		{
 			tmpScreen := UiToScreenNEW(10195, 437)
@@ -665,7 +715,7 @@ if(tRaces[tRaceNumber].classes[tClassNumber] != "NV")
 								if(IsCharCreationScreen() = true)
 								{
 									;not chars > back to char sel
-									tmp := UiToScreenNEW(-72, 733)
+									tmp := UiToScreenNEW(-160, 749)
 									MouseMove, tmp.X, tmp.Y, 0
 									Send {Click}
 									WaitForX(1, 500)
@@ -855,7 +905,7 @@ IsCharSelectionScreen()
 	tRGBColorLogo := GetColorAtUiPos(38,72)
 	tRGBColorAddons := GetColorAtUiPos(49, 722)
 
-	if ((IsColorRange(tRGBColorLogo.r, 198) = true and IsColorRange(tRGBColorLogo.g, 227) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorAddons.r, 255) = true and IsColorRange(tRGBColorAddons.g, 0) = true and IsColorRange(tRGBColorAddons.b, 0) = true))
+	if (((IsColorRange(tRGBColorLogo.r, 198) = true and IsColorRange(tRGBColorLogo.g, 227) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorAddons.r, 255) = true and IsColorRange(tRGBColorAddons.g, 0) = true and IsColorRange(tRGBColorAddons.b, 0) = true)) or (((IsColorRange(tRGBColorLogo.r, 50) = true and IsColorRange(tRGBColorLogo.g, 57) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorAddons.r, 64) = true and IsColorRange(tRGBColorAddons.g, 0) = true and IsColorRange(tRGBColorAddons.b, 0) = true))))
 	{
 		rReturnValue := true
 	}
@@ -901,6 +951,44 @@ IsRealmSelectionScreen()
 
 ;-----------------------------------------------------------------------------------------------------------------------------------------------------
 ;-----------------------------------------------------------------------------------------------------------------------------------------------------
+;------------------------------------------------------------------------------------------
+IsContract()
+{
+	gIgnoreKeyPress := true
+	rReturnValue := false
+
+	tRGBColorLogo := GetColorAtUiPos(38,72)
+	tRGBColorAddons := GetColorAtUiPos(49, 722)
+	tRGBColorTitleBackdrop := GetColorAtUiPos(815,110)
+
+	if ((((IsColorRange(tRGBColorLogo.r, 198) = true and IsColorRange(tRGBColorLogo.g, 227) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorAddons.r, 255) = true and IsColorRange(tRGBColorAddons.g, 0) = true and IsColorRange(tRGBColorAddons.b, 0) = true)) or (((IsColorRange(tRGBColorLogo.r, 50) = true and IsColorRange(tRGBColorLogo.g, 57) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorAddons.r, 64) = true and IsColorRange(tRGBColorAddons.g, 0) = true and IsColorRange(tRGBColorAddons.b, 0) = true)))) and (IsColorRange(tRGBColorTitleBackdrop.r, 0) = true and IsColorRange(tRGBColorTitleBackdrop.g, 0) = true and IsColorRange(tRGBColorTitleBackdrop.b, 0) = true))
+	{
+		rReturnValue := true
+	}
+
+	gIgnoreKeyPress := false
+	return rReturnValue
+}
+;------------------------------------------------------------------------------------------
+IsOutdatedAddonsWarning()
+{
+	gIgnoreKeyPress := true
+	rReturnValue := false
+
+	tRGBColorLogo := GetColorAtUiPos(38,72)
+	tRGBColorAddons := GetColorAtUiPos(49, 722)
+	tRGBColorTitleBackdrop := GetColorAtUiPos(830,410)
+
+	if ((((IsColorRange(tRGBColorLogo.r, 198) = true and IsColorRange(tRGBColorLogo.g, 227) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorAddons.r, 255) = true and IsColorRange(tRGBColorAddons.g, 0) = true and IsColorRange(tRGBColorAddons.b, 0) = true)) or (((IsColorRange(tRGBColorLogo.r, 50) = true and IsColorRange(tRGBColorLogo.g, 57) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorAddons.r, 64) = true and IsColorRange(tRGBColorAddons.g, 0) = true and IsColorRange(tRGBColorAddons.b, 0) = true)))) and (IsColorRange(tRGBColorTitleBackdrop.r, 0) = true and IsColorRange(tRGBColorTitleBackdrop.g, 40) = true and IsColorRange(tRGBColorTitleBackdrop.b, 0) = true))
+	{
+		rReturnValue := true
+	}
+
+	gIgnoreKeyPress := false
+	return rReturnValue
+}
+
+;------------------------------------------------------------------------------------------
 IsHighPopServerWarning()
 {
 	gIgnoreKeyPress := true

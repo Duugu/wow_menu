@@ -1,4 +1,4 @@
-Release: 3.1
+Release: 3.2
 
 IMPORTANT SET UP STEPS. DO THIS:
 1. Copy the folder "wow_menu" from the downloaded .zip file to some local location on your computer.
@@ -50,6 +50,10 @@ Todo/bugs:
 	- add server type to server names
 
 Release notes:
+	3.2
+		- Social contract on first login will be auto accepted
+		- Loading outdated addons will be auto accepted
+		- Removed Shazzrah from the english EU server list
 	3.1
 		- Updated list for US west, US east and EU English with new servers
 	3.0

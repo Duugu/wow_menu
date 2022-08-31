@@ -46,6 +46,10 @@ Todo/Bugs:
 	- Serverarten zu den Namen hinzufügen.
 
 Veröffentlichungshinweise:
+	3.2
+		- Verhaltenscodes bei erster Anmeldung wird automatisch akzeptiert
+		- Veraltete Addons laden wir automatisch akzeptiert
+		- Shazzrah aus der Liste der englischen Server in EU entfernt
 	3.1
 		- Listen für US west, US east und EU Englisch mit neuen Server aktualisiert
 	3.0
