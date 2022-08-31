@@ -1,5 +1,5 @@
 ﻿/*
-Release: 3.2
+Release: 3.3
 */
 
 ;------------------------------------------------------------------------------------------
@@ -160,14 +160,17 @@ InitLogin()
 	}
 	if(IsContract() = true)
 	{
-		tmp := UiToScreenNEW(630, 458)
+		tmp := UiToScreenNEW(715, 150)
+		;tmp := UiToScreenNEW(630, 458)
 		MouseMove, tmp.X, tmp.Y, 0
 		sleep, 500
 		Loop 5
 			Click, WheelDown
 
 		sleep, 200
-		tmp := UiToScreenNEW(715, 150)
+		;tmp := UiToScreenNEW(715, 150)
+		tmp := UiToScreenNEW(630, 510)
+
 		MouseMove, tmp.X, tmp.Y, 0
 		sleep, 100
 		Send {Click}
@@ -187,14 +190,17 @@ InitLogin()
 		}
 		if(IsContract() = true)
 		{
-			tmp := UiToScreenNEW(715,150)
+			tmp := UiToScreenNEW(715, 150)
+			;tmp := UiToScreenNEW(630, 458)
 			MouseMove, tmp.X, tmp.Y, 0
 			sleep, 500
 			Loop 5
 				Click, WheelDown
 
 			sleep, 200
-			tmp := UiToScreenNEW(630, 458)
+			;tmp := UiToScreenNEW(715, 150)
+			tmp := UiToScreenNEW(630, 510)
+
 			MouseMove, tmp.X, tmp.Y, 0
 			sleep, 100
 			Send {Click}
@@ -959,7 +965,7 @@ IsContract()
 
 	tRGBColorLogo := GetColorAtUiPos(38,72)
 	tRGBColorAddons := GetColorAtUiPos(49, 722)
-	tRGBColorTitleBackdrop := GetColorAtUiPos(815,110)
+	tRGBColorTitleBackdrop := GetColorAtUiPos(815,120)
 
 	if ((((IsColorRange(tRGBColorLogo.r, 198) = true and IsColorRange(tRGBColorLogo.g, 227) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorAddons.r, 255) = true and IsColorRange(tRGBColorAddons.g, 0) = true and IsColorRange(tRGBColorAddons.b, 0) = true)) or (((IsColorRange(tRGBColorLogo.r, 50) = true and IsColorRange(tRGBColorLogo.g, 57) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorAddons.r, 64) = true and IsColorRange(tRGBColorAddons.g, 0) = true and IsColorRange(tRGBColorAddons.b, 0) = true)))) and (IsColorRange(tRGBColorTitleBackdrop.r, 0) = true and IsColorRange(tRGBColorTitleBackdrop.g, 0) = true and IsColorRange(tRGBColorTitleBackdrop.b, 0) = true))
 	{
@@ -2125,7 +2131,7 @@ DeleteCharacterNameHandler()
 		{
 			WinGetPos, X, Y, Width, Height, Program Manager
 			Width := Width / 2
-			Height := Height / 2 + (Height / 3.5)
+			Height := Height / 2 - (Height / 10)
 			CoordMode, Mouse, Screen
 			MouseMove, %Width%, %Height%
 			Send ^{Numpad7}
@@ -2142,12 +2148,12 @@ DeleteCharacterNameHandler()
 		{
 			WinGetPos, X, Y, Width, Height, Program Manager
 			Width := Width / 2
-			Height := Height / 2 + (Height / 9.5)
+			Height := Height / 2 - (Height / 20)
 			CoordMode, Mouse, Screen
 			MouseMove, %Width%, %Height%
 			Send ^{Numpad8}
 			Sleep, 500
-			SendEvent {Click, right}
+			SendEvent {Click, left}
 		}
 	return
 

@@ -46,6 +46,12 @@ Todo/Bugs:
 	- Serverarten zu den Namen hinzufügen.
 
 Veröffentlichungshinweise:
+	3.3
+		- Versucht das automatische Zustimmen zum Vertrag zu beheben. Kann ich nicht testen, da ich den Vertrag schon angenommen habe. Feedback, ob es jetzt geht, wäre gut.
+		- Aktionen für numpad 7 und 8 wurden geändert:
+			- numpad7: Rechtsklick vor dich (war Rechtsklick an deinen Füßen)
+			- numpad8: Linksklick an deinen Füßen (für AoE Zauber, die per linksklick in die Spielwelt platziert werden müssen)
+
 	3.2
 		- Verhaltenscodes bei erster Anmeldung wird automatisch akzeptiert
 		- Veraltete Addons laden wir automatisch akzeptiert

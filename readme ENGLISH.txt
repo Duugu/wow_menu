@@ -50,6 +50,12 @@ Todo/bugs:
 	- add server type to server names
 
 Release notes:
+	3.3
+		- Tried to fix the auto accept for the contract. I can't test the fix, as I already have accepted the contract. Any feedback would be welcome.
+		- action for numpad 7 and 8 changed:
+			- numpad7: right click in front of you (was right click at your feet)
+			- numpad8: left click at your feet (to use area of effect spells that need to be targeted on the ground via left clicking in the game world)
+
 	3.2
 		- Social contract on first login will be auto accepted
 		- Loading outdated addons will be auto accepted
