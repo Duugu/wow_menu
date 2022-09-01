@@ -1,4 +1,4 @@
-Release: 3.2
+Release: 3.4
 
 IMPORTANT SET UP STEPS. DO THIS:
 1. Copy the folder "wow_menu" from the downloaded .zip file to some local location on your computer.
@@ -50,6 +50,8 @@ Todo/bugs:
 	- add server type to server names
 
 Release notes:
+	3.4
+		- Fixed a bug with the US EN version of the script
 	3.3
 		- Tried to fix the auto accept for the contract. I can't test the fix, as I already have accepted the contract. Any feedback would be welcome.
 		- action for numpad 7 and 8 changed:

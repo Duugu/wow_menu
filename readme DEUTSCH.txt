@@ -1,4 +1,4 @@
-Release: 3.1
+Release: 3.4
 
 WICHTIGE EINRICHTUNGSSCHRITTE. GEHE FOLGENDERMAßEN VOR:
 1. Kopiere den Ordner "wow_menu" aus der heruntergeladenen Zip-Datei in einen beliebigen Ordner auf deinem Computer. 
@@ -46,6 +46,8 @@ Todo/Bugs:
 	- Serverarten zu den Namen hinzufügen.
 
 Veröffentlichungshinweise:
+	3.4
+		- Fixed a bug with the US EN version of the script
 	3.3
 		- Versucht das automatische Zustimmen zum Vertrag zu beheben. Kann ich nicht testen, da ich den Vertrag schon angenommen habe. Feedback, ob es jetzt geht, wäre gut.
 		- Aktionen für numpad 7 und 8 wurden geändert:
