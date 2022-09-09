@@ -1,4 +1,4 @@
-Release: 3.5
+Release: 3.6
 
 WICHTIGE EINRICHTUNGSSCHRITTE. GEHE FOLGENDERMAßEN VOR:
 1. Kopiere den Ordner "wow_menu" aus der heruntergeladenen Zip-Datei in einen beliebigen Ordner auf deinem Computer. 
@@ -46,6 +46,8 @@ Todo/Bugs:
 	- Serverarten zu den Namen hinzufügen.
 
 Veröffentlichungshinweise:
+	3.6
+		- Fehler bei der Erstellung von neuen Chats mit Klasse Magier korrigiert.
 	3.5
 		- US East Serverliste aktualisiert.
 	3.4

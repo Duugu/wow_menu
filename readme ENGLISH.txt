@@ -1,4 +1,4 @@
-Release: 3.5
+Release: 3.6
 
 IMPORTANT SET UP STEPS. DO THIS:
 1. Copy the folder "wow_menu" from the downloaded .zip file to some local location on your computer.
@@ -50,6 +50,8 @@ Todo/bugs:
 	- add server type to server names
 
 Release notes:
+	3.6
+		- Fixed a bug with creating a new character and class Mage.
 	3.5
 		- Updated the US East server list.
 	3.4

@@ -1,5 +1,5 @@
 ﻿/*
-Release: 3.5
+Release: 3.6
 */
 
 ;------------------------------------------------------------------------------------------
@@ -558,7 +558,7 @@ if(tRaces[tRaceNumber].classes[tClassNumber] != "NV")
 								Send {Click}
 								WaitForX(2, 500)
 
-								tClassPositions := {1:{x:55,y:418},2:{x:95,y:418},3:{x:135,y:418},4:{x:180,y:418},5:{x:225,y:418},6:{x:55,y:456},7:{x:95,y:456},9:{x:135,y:456},9:{x:180,y:456},10:{x:225,y:456}}
+								tClassPositions := {1:{x:55,y:418},2:{x:95,y:418},3:{x:135,y:418},4:{x:180,y:418},5:{x:225,y:418},6:{x:55,y:456},7:{x:95,y:456},8:{x:135,y:456},9:{x:180,y:456},10:{x:225,y:456}}
 								tmp := UiToScreenNEW(tClassPositions[classNumber].x, tClassPositions[classNumber].y)
 								MouseMove, tmp.X, tmp.Y, 0
 								Send {Click}
