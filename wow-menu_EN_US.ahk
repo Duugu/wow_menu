@@ -1,5 +1,5 @@
 ﻿/*
-Release: 3.4
+Release: 3.5
 */
 
 ;------------------------------------------------------------------------------------------
@@ -445,7 +445,7 @@ InitMenu:
 		tServerNames[1] := {1:{name:"Atiesh",x:9795,y:192},2:{name:"Azursong",x:9795,y:212},3:{name:"Grobbulus",x:9795,y:232},4:{name:"Myzrael",x:9795,y:252},5:{name:"Old_Blanchy",x:9795,y:272},6:{name:"Skyfury",x:9795,y:292}, 7:{name:"Whitemane",x:9795,y:312}}
 
 		;east
-		tServerNames[2] := {1:{name:"Ashkandi",x:9795,y:192},2:{name:"Benediction",x:9795,y:212},3:{name:"Bloodsail_Buccaneers",x:9795,y:232},4:{name:"Earthfury",x:9795,y:252},5:{name:"Faerlina",x:9795,y:272},6:{name:"Maladath",x:9795,y:292},7:{name:"Mankrik",x:9795,y:312},8:{name:"Pagle",x:9795,y:332},9:{name:"Sulfuras",x:9795,y:352},10:{name:"Westfall",x:9795,y:372},11:{name:"Windseeker",x:9795,y:392}}
+		tServerNames[2] := {1:{name:"Ashkandi",x:9795,y:192},2:{name:"Benediction",x:9795,y:212},3:{name:"Bloodsail_Buccaneers",x:9795,y:232},4:{name:"Earthfury",x:9795,y:252},5:{name:"Eranikus",x:9795,y:272},6:{name:"Faerlina",x:9795,y:292},7:{name:"Maladath",x:9795,y:312},8:{name:"Mankrik",x:9795,y:332},9:{name:"Pagle",x:9795,y:352},10:{name:"Sulfuras",x:9795,y:372},11:{name:"Westfall",x:9795,y:392},11:{name:"Windseeker",x:9795,y:412}}
 
 		tServerNames[3] := {1:{name:"Argual",x:9795,y:192},2:{name:"Felstriker",x:9795,y:212},3:{name:"Remulos",x:9795,y:232},4:{name:"Yojamba",x:9795,y:252}}
 

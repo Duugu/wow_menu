@@ -1,4 +1,4 @@
-Release: 3.4
+Release: 3.5
 
 WICHTIGE EINRICHTUNGSSCHRITTE. GEHE FOLGENDERMAßEN VOR:
 1. Kopiere den Ordner "wow_menu" aus der heruntergeladenen Zip-Datei in einen beliebigen Ordner auf deinem Computer. 
@@ -46,6 +46,8 @@ Todo/Bugs:
 	- Serverarten zu den Namen hinzufügen.
 
 Veröffentlichungshinweise:
+	3.5
+		- US East Serverliste aktualisiert.
 	3.4
 		- Fixed a bug with the US EN version of the script
 	3.3

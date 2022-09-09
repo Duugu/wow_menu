@@ -1,2 +1,2 @@
 ## Interface: 30400
-## Title: wow menu 3.4
+## Title: wow menu 3.5

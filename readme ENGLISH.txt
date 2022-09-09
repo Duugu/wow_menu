@@ -1,4 +1,4 @@
-Release: 3.4
+Release: 3.5
 
 IMPORTANT SET UP STEPS. DO THIS:
 1. Copy the folder "wow_menu" from the downloaded .zip file to some local location on your computer.
@@ -50,6 +50,8 @@ Todo/bugs:
 	- add server type to server names
 
 Release notes:
+	3.5
+		- Updated the US East server list.
 	3.4
 		- Fixed a bug with the US EN version of the script
 	3.3
