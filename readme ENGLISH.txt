@@ -1,4 +1,4 @@
-Release: 3.6
+Release: 3.7
 
 IMPORTANT SET UP STEPS. DO THIS:
 1. Copy the folder "wow_menu" from the downloaded .zip file to some local location on your computer.
@@ -46,10 +46,11 @@ After logging in, the script automatically switches to "Play" mode. When logging
 
 RELEASE NOTES
 
-Todo/bugs:
-	- add server type to server names
-
 Release notes:
+	3.7
+		- Server lists for US and EU updated.
+		- Missing Bloodelfs re-added to the character creation menu.
+		- Added server types to the server names.
 	3.6
 		- Fixed a bug with creating a new character and class Mage.
 	3.5

@@ -1,5 +1,5 @@
 ﻿/*
-Release: 3.6
+Release: 3.7
 */
 
 ;------------------------------------------------------------------------------------------
@@ -46,6 +46,7 @@ SwitchToMode_1()
 class baseMenuEntryObject
 {
     name := "generic Name"
+    type := ""
     parent := ""
     p := ""
     n := ""
@@ -56,6 +57,12 @@ class baseMenuEntryObject
 		if (this.childs not or this.childs.MaxIndex() < 1)
 		{
 			PlayUtterance(this.name)
+			if(this.type != "")
+			{
+				tSleepTime := StrLen(this.type) * 220
+				Sleep, %tSleepTime%
+				PlayUtterance(this.type)
+			}
 			return
 		}
 		this.childs[1].onEnter()
@@ -65,6 +72,12 @@ class baseMenuEntryObject
     {
 		gCurrentMenuItem := this
 		PlayUtterance(this.name)
+			if(this.type != "")
+			{
+				tSleepTime := StrLen(this.type) * 220
+				Sleep, %tSleepTime%
+				PlayUtterance(this.type)
+			}
     }
 
 	onAction()
@@ -72,6 +85,7 @@ class baseMenuEntryObject
 		;MsgBox % this.name " generic"
 	}
 }
+
 
 ;------------------------------------------------------------------------------------------
 ; general keybinds, subs, functions
@@ -438,16 +452,15 @@ InitMenu:
 	global gCharUIPositions := {1:{x:-45,y:106},2:{x:-45,y:162},3:{x:-45,y:218},4:{x:-45,y:274},5:{x:-45,y:330},6:{x:-45,y:386},7:{x:-45,y:442},8:{x:-45,y:498},9:{x:-45,y:554},10:{x:-45,y:610}}
 
 
-		global tRealmLangs := {1:{name:"USA_West",x:450,y:636},2:{name:"USA_East",x:9827,y:636},3:{name:"Oceanic",x:9899,y:636}}
+	global tRealmLangs := {1:{name:"USA_West",x:450,y:636},2:{name:"USA_East",x:9827,y:636},3:{name:"Oceanic",x:9899,y:636}}
 
-		global tServerNames := {}
-		;west
-		tServerNames[1] := {1:{name:"Atiesh",x:9795,y:192},2:{name:"Azursong",x:9795,y:212},3:{name:"Grobbulus",x:9795,y:232},4:{name:"Myzrael",x:9795,y:252},5:{name:"Old_Blanchy",x:9795,y:272},6:{name:"Skyfury",x:9795,y:292}, 7:{name:"Whitemane",x:9795,y:312}}
-
-		;east
-		tServerNames[2] := {1:{name:"Ashkandi",x:9795,y:192},2:{name:"Benediction",x:9795,y:212},3:{name:"Bloodsail_Buccaneers",x:9795,y:232},4:{name:"Earthfury",x:9795,y:252},5:{name:"Eranikus",x:9795,y:272},6:{name:"Faerlina",x:9795,y:292},7:{name:"Maladath",x:9795,y:312},8:{name:"Mankrik",x:9795,y:332},9:{name:"Pagle",x:9795,y:352},10:{name:"Sulfuras",x:9795,y:372},11:{name:"Westfall",x:9795,y:392},11:{name:"Windseeker",x:9795,y:412}}
-
-		tServerNames[3] := {1:{name:"Argual",x:9795,y:192},2:{name:"Felstriker",x:9795,y:212},3:{name:"Remulos",x:9795,y:232},4:{name:"Yojamba",x:9795,y:252}}
+	global tServerNames := {}
+	;west
+	tServerNames[1] := {1:{name:"Angerforge",x:9795,y:192,type:"pvp"},2:{name:"Atiesh",x:9795,y:212,type:"pve"},3:{name:"Azursong",x:9795,y:232,type:"pve"},4:{name:"Grobbulus",x:9795,y:252,type:"rp_pvp"},5:{name:"Myzrael",x:9795,y:272,type:"pve"},6:{name:"Old_Blanchy",x:9795,y:292,type:"pve"},7:{name:"Skyfury",x:9795,y:312,type:"pvp"},8:{name:"Whitemane",x:9795,y:332,type:"pvp"}}
+	;east
+	tServerNames[2] := {1:{name:"Ashkandi",x:9795,y:192,type:"pve"},2:{name:"Benediction",x:9795,y:212,type:"pvp"},3:{name:"Bloodsail_Buccaneers",x:9795,y:232,type:"rp_pve"},4:{name:"Earthfury",x:9795,y:252,type:"pvp"},5:{name:"Eranikus",x:9795,y:272,type:"pvp"},6:{name:"Faerlina",x:9795,y:292,type:"pvp"},7:{name:"Maladath",x:9795,y:312,type:"pve"},8:{name:"Mankrik",x:9795,y:332,type:"pve"},9:{name:"Pagle",x:9795,y:352,type:"pve"},10:{name:"Sulfuras",x:9795,y:372,type:"pvp"},11:{name:"Westfall",x:9795,y:392,type:"pve"},12:{name:"Windseeker",x:9795,y:412,type:"pve"}}
+	;oceanic
+	tServerNames[3] := {1:{name:"Argual",x:9795,y:192,type:"pvp"},2:{name:"Remulos",x:9795,y:212,type:"pve"},3:{name:"Yojamba",x:9795,y:232,type:"pvp"}}
 
 	global tGenders := {1:{name:"male",x:112,y:520},2:{name:"female",x:156,y:520}}
 	global tRaces := {}
@@ -460,7 +473,7 @@ InitMenu:
 	tRaces[7] := {name:"undead",x:185,y:145,classes:{1:"warrior",2:"NV",3:"NV",4:"rogue",5:"priest",6:"deathknight",7:"NV",8:"mage",9:"warlock",10:"NV"}}
 	tRaces[8] := {name:"tauren",x:185,y:205,classes:{1:"warrior",2:"NV",3:"hunter",4:"NV",5:"NV",6:"deathknight",7:"shaman",8:"NV",9:"NV",10:"druid"}}
 	tRaces[9] := {name:"troll",x:185,y:265,classes:{1:"warrior",2:"NV",3:"hunter",4:"rogue",5:"priest",6:"deathknight",7:"shaman",8:"mage",9:"NV",10:"NV"}}
-	tRaces[10] := {name:"NV",x:185,y:315,classes:{1:"warrior",2:"paladin",3:"hunter",4:"rogue",5:"priest",6:"deathknight",7:"NV",8:"mage",9:"warlock",10:"NV"}}
+	tRaces[10] := {name:"bloodelf",x:185,y:315,classes:{1:"NV",2:"paladin",3:"hunter",4:"rogue",5:"priest",6:"deathknight",7:"NV",8:"mage",9:"warlock",10:"NV"}}
 
 	;build the audio menu
 	;main
@@ -615,6 +628,7 @@ if(tRaces[tRaceNumber].classes[tClassNumber] != "NV")
 				gMainMenu.childs[tMainItemN].childs[tLangNumber] := new baseMenuEntryObject
 				gMainMenu.childs[tMainItemN].childs[tLangNumber].parent := gMainMenu.childs[tMainItemN]
 				gMainMenu.childs[tMainItemN].childs[tLangNumber].name := tRealmLangs[tLangNumber].name
+				gMainMenu.childs[tMainItemN].childs[tLangNumber].type := tRealmLangs[tLangNumber].type
 				;if(tLangNumber = 2)
 				;{
 				gMainMenu.childs[tMainItemN].childs[tLangNumber].childs := []
@@ -624,6 +638,7 @@ if(tRaces[tRaceNumber].classes[tClassNumber] != "NV")
 						gMainMenu.childs[tMainItemN].childs[tLangNumber].childs[tRealmNumber] := new baseMenuEntryObject
 						gMainMenu.childs[tMainItemN].childs[tLangNumber].childs[tRealmNumber].parent := gMainMenu.childs[tMainItemN].childs[tLangNumber ]
 						gMainMenu.childs[tMainItemN].childs[tLangNumber].childs[tRealmNumber].name := tServerNames[tLangNumber][tRealmNumber].name
+						gMainMenu.childs[tMainItemN].childs[tLangNumber].childs[tRealmNumber].type := tServerNames[tLangNumber][tRealmNumber].type
 						gMainMenuchilds4ChildsXChildsYAction(this, langNumber, serverNumber)
 						{
 							gIgnoreKeyPress := true
@@ -1405,7 +1420,9 @@ PlayUtterance(menuName)
 		,Maladath:"00003_Maladath_en.mp3"
 		,Thekal:"00004_Thekal_en.mp3"
 		,Giantstalker:"00005_Giantstalker_en.mp3"
-		,deathknight:"00006_deathknight_en.mp3"}
+		,deathknight:"00006_deathknight_en.mp3"
+		,Angerforge:"00001_1409_en.mp3"
+		,jin_do:"00004_1409_en.mp3"}
 
 
 	soundFiles1 := {1:"00091_sku_en_eu.mp3"
@@ -1508,10 +1525,10 @@ PlayUtterance(menuName)
 		,razorfen:"00188_sku_en_eu.mp3"
 		,transcendence:"00189_sku_en_eu.mp3"
 		,venoxis:"00190_sku_en_eu.mp3"
-		,pvp:"00191_sku_en_eu.mp3"
-		,pve:"00192_sku_en_eu.mp3"
-		,rp_pve:"00193_sku_en_eu.mp3"
-		,rp_pvp:"00194_sku_en_eu.mp3"
+			,pvp:"00191_sku_en_eu.mp3"
+			,pve:"00002_1409_en.mp3"
+			,rp_pve:"00003_1409_en.mp3"
+			,rp_pvp:"00194_sku_en_eu.mp3"
 		,enter_name:"00195_sku_en_eu.mp3"
 		,create:"00196_sku_en_eu.mp3"
 		,generate_random_character:"00197_sku_en_eu.mp3"

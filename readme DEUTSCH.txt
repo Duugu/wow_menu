@@ -1,7 +1,7 @@
-Release: 3.6
+Release: 3.7
 
 WICHTIGE EINRICHTUNGSSCHRITTE. GEHE FOLGENDERMAßEN VOR:
-1. Kopiere den Ordner "wow_menu" aus der heruntergeladenen Zip-Datei in einen beliebigen Ordner auf deinem Computer. 
+1. Kopiere den Ordner "wow_menu" aus der heruntergeladenen Zip-Datei in einen beliebigen Ordner auf deinem Computer.
 2. Geh zum gerade eingefügten Ordner "wow_menu".
 3. (Optional) Erstelle eine Verknüpfung zum entsprechenden Skript (wow-menu_DE_EU.ahk, wow-menu_EN_EU.ahk oder wow-menu_EN_US.ahk, je nach deiner Kombination aus Sprache und Region) auf deinem Desktop. Damit kannst du das Skript später einfacher zum Spielen starten.
 4. Geht zum Ordner "CopyTheContentOfThisFolderToInterface" in deinem "wow_menu" Ordner. Er enthält 3 Ordner.
@@ -42,10 +42,11 @@ Nach dem Einloggen schaltet das Skript automatisch auf "Spielen". Beim Ausloggen
 
 ----------------------------------------------------------------------------------------
 
-Todo/Bugs:
-	- Serverarten zu den Namen hinzufügen.
-
 Veröffentlichungshinweise:
+	3.7
+		- Serverliste für US und EU aktualisiert.
+		- Fehlende Blutelfen wieder zur Charactererstellung hinzugefügt.
+		- Serverarten hinter die Servernamen angehängt.
 	3.6
 		- Fehler bei der Erstellung von neuen Chats mit Klasse Magier korrigiert.
 	3.5
