@@ -43,6 +43,8 @@ Nach dem Einloggen schaltet das Skript automatisch auf "Spielen". Beim Ausloggen
 ----------------------------------------------------------------------------------------
 
 Veröffentlichungshinweise:
+	3.8
+		- Fehlende Sounddatei für US East Eranikus hinzugefügt.
 	3.7
 		- Serverliste für US und EU aktualisiert.
 		- Fehlende Blutelfen wieder zur Charactererstellung hinzugefügt.

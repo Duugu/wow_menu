@@ -1,4 +1,4 @@
-Release: 3.7
+Release: 3.8
 
 IMPORTANT SET UP STEPS. DO THIS:
 1. Copy the folder "wow_menu" from the downloaded .zip file to some local location on your computer.
@@ -47,6 +47,8 @@ After logging in, the script automatically switches to "Play" mode. When logging
 RELEASE NOTES
 
 Release notes:
+	3.8
+		- Added the missing sound file for US East Eranikus.
 	3.7
 		- Server lists for US and EU updated.
 		- Missing Bloodelfs re-added to the character creation menu.

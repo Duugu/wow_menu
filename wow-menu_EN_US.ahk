@@ -1,5 +1,5 @@
 ﻿/*
-Release: 3.7
+Release: 3.8
 */
 
 ;------------------------------------------------------------------------------------------
@@ -1422,7 +1422,9 @@ PlayUtterance(menuName)
 		,Giantstalker:"00005_Giantstalker_en.mp3"
 		,deathknight:"00006_deathknight_en.mp3"
 		,Angerforge:"00001_1409_en.mp3"
-		,jin_do:"00004_1409_en.mp3"}
+		,jin_do:"00004_1409_en.mp3"
+		,Eranikus:"00001_1509_en.mp3"
+		}
 
 
 	soundFiles1 := {1:"00091_sku_en_eu.mp3"
