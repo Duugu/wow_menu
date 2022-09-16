@@ -1,5 +1,3 @@
-Release: 3.8
-
 IMPORTANT SET UP STEPS. DO THIS:
 1. Copy the folder "wow_menu" from the downloaded .zip file to some local location on your computer.
 2. Go to the folder "wow_menu" that you've just copied.
@@ -47,6 +45,9 @@ After logging in, the script automatically switches to "Play" mode. When logging
 RELEASE NOTES
 
 Release notes:
+	3.9
+		- Fixed an issue with the EN US script.
+
 	3.8
 		- Added the missing sound file for US East Eranikus.
 	3.7

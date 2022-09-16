@@ -1,5 +1,3 @@
-Release: 3.7
-
 WICHTIGE EINRICHTUNGSSCHRITTE. GEHE FOLGENDERMAßEN VOR:
 1. Kopiere den Ordner "wow_menu" aus der heruntergeladenen Zip-Datei in einen beliebigen Ordner auf deinem Computer.
 2. Geh zum gerade eingefügten Ordner "wow_menu".
@@ -43,6 +41,8 @@ Nach dem Einloggen schaltet das Skript automatisch auf "Spielen". Beim Ausloggen
 ----------------------------------------------------------------------------------------
 
 Veröffentlichungshinweise:
+	3.9
+		- Problem mit dem EN US Skript behoben.
 	3.8
 		- Fehlende Sounddatei für US East Eranikus hinzugefügt.
 	3.7
