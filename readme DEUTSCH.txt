@@ -41,6 +41,10 @@ Nach dem Einloggen schaltet das Skript automatisch auf "Spielen". Beim Ausloggen
 ----------------------------------------------------------------------------------------
 
 Veröffentlichungshinweise:
+	3.11
+		- Versucht ein Problem mit ultra wide Bildschirmen mit einem größeren Seitenverhältnis als 1,77 zu beheben.
+	3.10
+		- Versucht ein Problem mit der nicht funktionierenden Autoannahme des Vertrags bei der ersten Anmeldung zu beheben. Keine Ahnung, ob das funktioniert hat, da ich es nicht testen kann.
 	3.9
 		- Problem mit dem EN US Skript behoben.
 	3.8

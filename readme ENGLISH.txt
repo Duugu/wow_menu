@@ -45,9 +45,12 @@ After logging in, the script automatically switches to "Play" mode. When logging
 RELEASE NOTES
 
 Release notes:
+	3.11
+		- Tried to fix an issue with ultra wide screens with higher ratio than 1.77.
+	3.10
+		- Tried to fix an issue with the social contract not auto-accepted on first login. No sure if that worked out, as I can't test it.
 	3.9
 		- Fixed an issue with the EN US script.
-
 	3.8
 		- Added the missing sound file for US East Eranikus.
 	3.7

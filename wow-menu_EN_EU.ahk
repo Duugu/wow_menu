@@ -359,6 +359,24 @@ InitLogin()
 			return
 			}
 		}
+
+		if(IsContract() = true)
+		{
+			tmp := UiToScreenNEW(715, 150)
+			;tmp := UiToScreenNEW(630, 458)
+			MouseMove, tmp.X, tmp.Y, 0
+			sleep, 500
+			Loop 5
+				Click, WheelDown
+
+			sleep, 200
+			;tmp := UiToScreenNEW(715, 150)
+			tmp := UiToScreenNEW(630, 510)
+
+			MouseMove, tmp.X, tmp.Y, 0
+			sleep, 100
+			Send {Click}
+		}
 	}
 
 	if(IsCharSelectionScreen() != true)
@@ -1222,20 +1240,29 @@ IsConnectingToGame()
 ;------------------------------------------------------------------------------------------
 ScreenToUiNEW(x, y)
 {
+	tA_ScreenWidth := A_ScreenWidth
+	tHalfUIBarWidth   := 0
+	ar := GetAR()
+	if (ar > 1.77)
+	{
+		tA_ScreenWidth := A_ScreenHeight * 1.7777777777777777777777
+		tHalfUIBarWidth := (A_ScreenWidth - tA_ScreenWidth) / 2
+	}
+
 	fUIx := 0
-	oneThirdSW := A_ScreenWidth / 3
+	oneThirdSW := tA_ScreenWidth / 3
 
 	if(x >= (oneThirdSW * 2)) ;anchor right
 	{
-		fUIx := (GetUiX() * (((A_ScreenWidth - x) / (A_ScreenWidth / 100)) / 100)) * -1
+		fUIx := (GetUiX() * (((tA_ScreenWidth - x) / (tA_ScreenWidth / 100)) / 100)) * -1
 	}
 	else if(x < oneThirdSW * 2 and x > oneThirdSW) ;anchor center
 	{
-		fUIx := ((GetUiX() / 100) * ((x - (A_ScreenWidth / 2)) / (A_ScreenWidth / 100))) + 10000
+		fUIx := ((GetUiX() / 100) * ((x - (tA_ScreenWidth / 2)) / (tA_ScreenWidth / 100))) + 10000
 	}
 	else if(x <= oneThirdSW) ;anchor left
 	{
-		fUIx := GetUiX() * (x / A_ScreenWidth)
+		fUIx := GetUiX() * (x / tA_ScreenWidth)
 	}
 
 	Array := {X: (fUIx), Y: (768 * (y / A_ScreenHeight))}
@@ -1245,19 +1272,28 @@ ScreenToUiNEW(x, y)
 ;------------------------------------------------------------------------------------------
 UiToScreenNEW(x, y)
 {
+	tA_ScreenWidth := A_ScreenWidth
+	tHalfUIBarWidth   := 0
+	ar := GetAR()
+	if (ar > 1.77)
+	{
+		tA_ScreenWidth := A_ScreenHeight * 1.7777777777777777777777
+		tHalfUIBarWidth := (A_ScreenWidth - tA_ScreenWidth) / 2
+	}
+
 	fSx := 0
 
 	if(x >= 7000) ;anchor center
 	{
-		fSx := (((x - 10000) / (GetUiX() / 100)) * (A_ScreenWidth / 100)) + (A_ScreenWidth / 2)
+		fSx := (((x - 10000) / (GetUiX() / 100)) * (tA_ScreenWidth / 100)) + (tA_ScreenWidth / 2)
 	}
 	else if(x <= 0) ;anchor right
 	{
-		fSx := A_ScreenWidth - ((A_ScreenWidth / 100) * ((x * -1) / (GetUiX() / 100)))
+		fSx := tA_ScreenWidth - ((tA_ScreenWidth / 100) * ((x * -1) / (GetUiX() / 100)))
 	}
 	else if(x < 7000) ;anchor left
 	{
-		fSx := (x / (GetUiX() / 100)) * (A_ScreenWidth / 100)
+		fSx := (x / (GetUiX() / 100)) * (tA_ScreenWidth / 100)
 	}
 
 	fSy := (A_ScreenHeight * (y / 768))
@@ -1275,7 +1311,7 @@ UiToScreenNEW(x, y)
 		}
 	}
 
-	Array := {X: (fSx), Y: (fSy)}
+	Array := {X: (fSx + tHalfUIBarWidth), Y: (fSy)}
 
 	return Array
 }
@@ -1307,7 +1343,7 @@ SwitchToMode1()
 ;------------------------------------------------------------------------------------------
 GetAR()
 {
-	ar := A_ScreenWidth / A_ScreenHeight
+	ar := (A_ScreenWidth) / A_ScreenHeight
 	return ar
 }
 
