@@ -13,8 +13,8 @@ Achtung: Du musst die Anweisungen oben zwingend genau befolgen. Kopiere NICHT ei
 
 Das Skript hat zwei Modi: "Login" und "Spielen", zwischen denen du mit ALT + F1 umschalten kannst.
 Im Modus "Login" kannst du über ein Audio-Menü auf der Charakterauswahl-Seite von WoW Chars auswählen und mit diesen die Spielwelt betreten, neue Chars erstellen, zu einem anderen Server wechseln oder Chars löschen.
-Im Modus "Spielen" kannst du über die Tasten NUMMERNBLOCK 7-8 zwischen drei Kameraperspektiven im Spiel umschalten und gleichzeitig einen Rechtsklick im Spiel durchführen. Diese Funktion dient dem Plündern im Spiel.
-Mit ALT + ESCAPE kannst du das Skript vollständig beenden (es gibt kein Audiofeedback dabei!).
+Im Modus "Spielen" kannst du über die Taste NUMMERNBLOCK 7 einen Rechtsklick und über NUMMERNBLOCK 8 einen Linksklick an deinen Füßen ausführen. Mit NUMMERNBLOCK 9 drehst du dich zum aktuellen Beacon.
+Mit ALT + ESCAPE kannst du das Skript vollständig beenden.
 
 2. Verwendung
 
@@ -41,6 +41,9 @@ Nach dem Einloggen schaltet das Skript automatisch auf "Spielen". Beim Ausloggen
 ----------------------------------------------------------------------------------------
 
 Veröffentlichungshinweise:
+	3.12
+		- Unterstützung für automatisches Pausieren bei Dial Targeting hinzugefügt.
+		- Social contract wird erneut automatisch angenommen.
 	3.11
 		- Versucht ein Problem mit ultra wide Bildschirmen mit einem größeren Seitenverhältnis als 1,77 zu beheben.
 	3.10

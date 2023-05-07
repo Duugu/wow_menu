@@ -15,8 +15,8 @@ Caution: You need to really carefully follow the instructions above. Do NOT just
 
 The script has two modes: "Login" and "Play". You can switch between them with ALT + F1.
 In "Login" mode, you can select characters and enter the game world with them, create new characters, switch to another server or delete characters.
-In "Play" mode, you can use the NUMPAD 7-8 keys to do right-clicks at tree different positions in the game. This function is used for looting in the game.
-Use ALT + ESCAPE to unload/end the script (there's no audio feedback on that action!).
+In "Play" mode, you can use the NUMPAD 7 to do a right click at your feet in the game world. NUMPAD 8 is doing a left click at your feet in the game world. NUMPAD 9 is to auto align to the current audio beacon in the game world
+Use ALT + ESCAPE to unload/end the script.
 
 2. Usage
 
@@ -45,8 +45,11 @@ After logging in, the script automatically switches to "Play" mode. When logging
 RELEASE NOTES
 
 Release notes:
+	3.12
+		- Added support for auto pause if dial targeting is enabled.
+		- Social contract will be auto accepted again.
 	3.11
-		- Tried to fix an issue with ultra wide screens with higher ratio than 1.77.
+		- Fixed an issue with ultra wide screens with higher ratio than 1.77.
 	3.10
 		- Tried to fix an issue with the social contract not auto-accepted on first login. No sure if that worked out, as I can't test it.
 	3.9
