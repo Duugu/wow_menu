@@ -41,6 +41,8 @@ Nach dem Einloggen schaltet das Skript automatisch auf "Spielen". Beim Ausloggen
 ----------------------------------------------------------------------------------------
 
 Veröffentlichungshinweise:
+	3.13
+		- Bessere Social contract Erkennung.
 	3.12
 		- Unterstützung für automatisches Pausieren bei Dial Targeting hinzugefügt.
 		- Social contract wird erneut automatisch angenommen.

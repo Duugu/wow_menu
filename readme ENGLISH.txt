@@ -45,6 +45,8 @@ After logging in, the script automatically switches to "Play" mode. When logging
 RELEASE NOTES
 
 Release notes:
+	3.13
+		- Better Social contract detection.
 	3.12
 		- Added support for auto pause if dial targeting is enabled.
 		- Social contract will be auto accepted again.

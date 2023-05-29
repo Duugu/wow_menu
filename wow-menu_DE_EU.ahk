@@ -155,6 +155,52 @@ CheckMode:
 return
 
 ;------------------------------------------------------------------------------------------
+AcceptContract()
+{
+	tmp := UiToScreenNEW(9999, 195)
+	MouseMove, tmp.X, tmp.Y, 0
+	sleep, 500
+	Loop 5
+		Click, WheelDown
+
+	sleep, 500
+	tmp := UiToScreenNEW(9950, 439)
+	MouseMove, tmp.X, tmp.Y, 0
+	sleep, 50
+	Send {Click}
+	sleep, 50
+	tmp := UiToScreenNEW(9950, 459)
+	MouseMove, tmp.X, tmp.Y, 0
+	sleep, 50
+	Send {Click}
+	sleep, 50
+	tmp := UiToScreenNEW(9950, 479)
+	MouseMove, tmp.X, tmp.Y, 0
+	sleep, 50
+	Send {Click}
+	sleep, 50
+	tmp := UiToScreenNEW(9950, 499)
+	MouseMove, tmp.X, tmp.Y, 0
+	sleep, 50
+	Send {Click}
+	sleep, 50
+	tmp := UiToScreenNEW(9950, 519)
+	MouseMove, tmp.X, tmp.Y, 0
+	sleep, 50
+	Send {Click}
+	sleep, 50
+	tmp := UiToScreenNEW(9950, 539)
+	MouseMove, tmp.X, tmp.Y, 0
+	sleep, 50
+	Send {Click}
+	sleep, 50
+	tmp := UiToScreenNEW(9950, 559)
+	MouseMove, tmp.X, tmp.Y, 0
+	sleep, 50
+	Send {Click}
+}
+
+;------------------------------------------------------------------------------------------
 InitLogin()
 {
 	gIsInitializing := true
@@ -173,47 +219,7 @@ InitLogin()
 	}
 	if(IsContract() = true)
 	{
-		tmp := UiToScreenNEW(9999, 195)
-		MouseMove, tmp.X, tmp.Y, 0
-		sleep, 500
-		Loop 5
-			Click, WheelDown
-
-		sleep, 500
-		tmp := UiToScreenNEW(9950, 469)
-		MouseMove, tmp.X, tmp.Y, 0
-		sleep, 50
-		Send {Click}
-		sleep, 50
-		tmp := UiToScreenNEW(9950, 489)
-		MouseMove, tmp.X, tmp.Y, 0
-		sleep, 50
-		Send {Click}
-		sleep, 50
-		tmp := UiToScreenNEW(9950, 509)
-		MouseMove, tmp.X, tmp.Y, 0
-		sleep, 50
-		Send {Click}
-		sleep, 50
-		tmp := UiToScreenNEW(9950, 525)
-		MouseMove, tmp.X, tmp.Y, 0
-		sleep, 50
-		Send {Click}
-		sleep, 50
-		tmp := UiToScreenNEW(9950, 545)
-		MouseMove, tmp.X, tmp.Y, 0
-		sleep, 50
-		Send {Click}
-		sleep, 50
-		tmp := UiToScreenNEW(9950, 565)
-		MouseMove, tmp.X, tmp.Y, 0
-		sleep, 50
-		Send {Click}
-		sleep, 50
-		tmp := UiToScreenNEW(9950, 585)
-		MouseMove, tmp.X, tmp.Y, 0
-		sleep, 50
-		Send {Click}
+		AcceptContract()
 	}
 
 	if(IsCharSelectionScreen() = true)
@@ -230,47 +236,7 @@ InitLogin()
 		}
 		if(IsContract() = true)
 		{
-			tmp := UiToScreenNEW(9999, 195)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 500
-			Loop 5
-				Click, WheelDown
-
-			sleep, 500
-			tmp := UiToScreenNEW(9950, 469)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 50
-			Send {Click}
-			sleep, 50
-			tmp := UiToScreenNEW(9950, 489)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 50
-			Send {Click}
-			sleep, 50
-			tmp := UiToScreenNEW(9950, 509)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 50
-			Send {Click}
-			sleep, 50
-			tmp := UiToScreenNEW(9950, 525)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 50
-			Send {Click}
-			sleep, 50
-			tmp := UiToScreenNEW(9950, 545)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 50
-			Send {Click}
-			sleep, 50
-			tmp := UiToScreenNEW(9950, 565)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 50
-			Send {Click}
-			sleep, 50
-			tmp := UiToScreenNEW(9950, 585)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 50
-			Send {Click}
+			AcceptContract()
 		}
 
 		if(IsDeleteCharPopup() = true)
@@ -305,47 +271,7 @@ InitLogin()
 		}
 		if(IsContract() = true)
 		{
-			tmp := UiToScreenNEW(9999, 195)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 500
-			Loop 5
-				Click, WheelDown
-
-			sleep, 500
-			tmp := UiToScreenNEW(9950, 469)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 50
-			Send {Click}
-			sleep, 50
-			tmp := UiToScreenNEW(9950, 489)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 50
-			Send {Click}
-			sleep, 50
-			tmp := UiToScreenNEW(9950, 509)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 50
-			Send {Click}
-			sleep, 50
-			tmp := UiToScreenNEW(9950, 525)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 50
-			Send {Click}
-			sleep, 50
-			tmp := UiToScreenNEW(9950, 545)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 50
-			Send {Click}
-			sleep, 50
-			tmp := UiToScreenNEW(9950, 565)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 50
-			Send {Click}
-			sleep, 50
-			tmp := UiToScreenNEW(9950, 585)
-			MouseMove, tmp.X, tmp.Y, 0
-			sleep, 50
-			Send {Click}
+			AcceptContract()
 		}
 
 		gosub CheckMode
@@ -1062,7 +988,7 @@ IsContract()
 
 	tRGBColorLogo := GetColorAtUiPos(38,72)
 	tRGBColorAddons := GetColorAtUiPos(49, 722)
-	tRGBColorTitleBackdrop := GetColorAtUiPos(9842, 284)
+	tRGBColorTitleBackdrop := GetColorAtUiPos(9852, 284)
 
 	if ((IsColorRange(tRGBColorLogo.r, 50) = true and IsColorRange(tRGBColorLogo.g, 57) = true and IsColorRange(tRGBColorLogo.b, 0) = true) and (IsColorRange(tRGBColorAddons.r, 64) = true and IsColorRange(tRGBColorAddons.g, 0) = true and IsColorRange(tRGBColorAddons.b, 0) = true) and (IsColorRange(tRGBColorTitleBackdrop.r, 0) = true and IsColorRange(tRGBColorTitleBackdrop.g, 0) = true and IsColorRange(tRGBColorTitleBackdrop.b, 0) = true))
 	{
