@@ -45,6 +45,8 @@ After logging in, the script automatically switches to "Play" mode. When logging
 RELEASE NOTES
 
 Release notes:
+	3.14
+		- Better detection and auto accepting the Outdated Addons warning to load outdated addons.
 	3.13
 		- Better Social contract detection.
 	3.12

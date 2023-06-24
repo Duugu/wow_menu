@@ -41,6 +41,8 @@ Nach dem Einloggen schaltet das Skript automatisch auf "Spielen". Beim Ausloggen
 ----------------------------------------------------------------------------------------
 
 Veröffentlichungshinweise:
+	3.14
+		- Bessere Erkennung und automatisches Wegklicken von "Veraltete Addons"-Warnung.
 	3.13
 		- Bessere Social contract Erkennung.
 	3.12

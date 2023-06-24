@@ -208,6 +208,20 @@ InitLogin()
 
 	StartOver:
 
+	WaitForX(4, 500)
+	if(IsOutdatedAddonsWarning() = true)
+	{
+		tmpScreen := UiToScreenNEW(740,410)
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
+		Send {Click}
+		Sleep, 1000
+		tmpScreen := UiToScreenNEW(640,440)
+		MouseMove, floor(tmpScreen.X), floor(tmpScreen.Y), 0
+		Send {Click}
+	}
+	WaitForX(4, 500)
+
+
 	if(IsOutdatedAddonsWarning() = true)
 	{
 		tmpScreen := UiToScreenNEW(740,410)
@@ -225,6 +239,8 @@ InitLogin()
 
 	if(IsCharSelectionScreen() = true)
 	{
+		WaitForX(4, 500)
+
 		if(IsOutdatedAddonsWarning() = true)
 		{
 			tmpScreen := UiToScreenNEW(740,410)
@@ -419,7 +435,6 @@ InitLogin()
 		gCurrentMenuItem := gMainMenu
 		gMainMenu.onEnter()
 	}
-
 	gIsInitializing := false
 }
 
