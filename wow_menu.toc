@@ -1,4 +1,4 @@
 ## Interface: 30402
-## Title: wow menu 3.14
-## Version: 3.14
+## Title: wow menu 4.0
+## Version: 4.0
 ## X-Curse-Project-ID: 

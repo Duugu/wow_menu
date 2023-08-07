@@ -45,6 +45,10 @@ After logging in, the script automatically switches to "Play" mode. When logging
 RELEASE NOTES
 
 Release notes:
+	4.0
+		- You now can create and select up to 50 characters per server
+		- Newly created characters are not selected as default. After character creation the first character is selected. You need to select the new character to login with that character.
+		- On login, server change, switching to login mode, etc. the script will always select the first character in your list. No matter what character was selected previously.
 	3.14
 		- Better detection and auto accepting the Outdated Addons warning to load outdated addons.
 	3.13
@@ -84,3 +88,4 @@ Release notes:
 		- Updated list for US west, US east and EU English with new servers
 	3.0
 		- Initial release for WotLK
+joanna

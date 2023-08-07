@@ -574,9 +574,9 @@ if(tRaces[tRaceNumber].classes[tClassNumber] != "NV")
 {
 						gMainMenuchildsGenericCreateCharAction(this, genderNumber, raceNumber, classNumber)
 						{
-							gNumberOfCharsOnCurrentRealm := GetNumberOfChars()
+							gNumberOfCharsOnCurrentRealm := GetNumberOfChars50(true)
 
-							if(gNumberOfCharsOnCurrentRealm < 9)
+							if(gNumberOfCharsOnCurrentRealm < 50)
 							{
 								gIgnoreKeyPress := true
 								tmp := UiToScreenNEW(-230, 616)
@@ -1474,6 +1474,31 @@ PlayUtterance(menuName)
 		,Angerforge:"00001_1409_en.mp3"
 		,jin_do:"00004_1409_en.mp3"}
 
+	soundFiles2 := {26:"00002_070823_en_26.mp3"
+			,27:"00003_070823_en_27.mp3"
+			,28:"00004_070823_en_28.mp3"
+			,29:"00005_070823_en_29.mp3"
+			,30:"00006_070823_en_30.mp3"
+			,31:"00007_070823_en_31.mp3"
+			,32:"00008_070823_en_32.mp3"
+			,33:"00009_070823_en_33.mp3"
+			,34:"00010_070823_en_34.mp3"
+			,35:"00011_070823_en_35.mp3"
+			,36:"00012_070823_en_36.mp3"
+			,37:"00013_070823_en_37.mp3"
+			,38:"00014_070823_en_38.mp3"
+			,39:"00015_070823_en_39.mp3"
+			,40:"00016_070823_en_40.mp3"
+			,41:"00017_070823_en_41.mp3"
+			,42:"00018_070823_en_42.mp3"
+			,43:"00019_070823_en_43.mp3"
+			,44:"00020_070823_en_44.mp3"
+			,45:"00021_070823_en_45.mp3"
+			,46:"00022_070823_en_46.mp3"
+			,47:"00023_070823_en_47.mp3"
+			,48:"00024_070823_en_48.mp3"
+			,49:"00025_070823_en_49.mp3"
+			,50:"00026_070823_en_50.mp3"}
 
 
 	soundFiles1 := {1:"00091_sku_en_eu.mp3"
@@ -1597,13 +1622,17 @@ PlayUtterance(menuName)
 		,move_character_down:"2306226.mp3"}
 
 
-	if(soundFiles[menuName] = "")
+	if(soundFiles[menuName] != "")
+	{
+		SoundPlay, % A_WorkingDir . "\soundfiles\" . soundFiles[menuName]
+	}
+	else if(soundFiles1[menuName] != "")
 	{
 		SoundPlay, % A_WorkingDir . "\soundfiles\" . soundFiles1[menuName]
 	}
-	else
+	else if(soundFiles2[menuName] != "")
 	{
-		SoundPlay, % A_WorkingDir . "\soundfiles\" . soundFiles[menuName]
+		SoundPlay, % A_WorkingDir . "\soundfiles\" . soundFiles2[menuName]
 	}
 }
 
@@ -1656,39 +1685,76 @@ GetUiX()
 }
 
 ;------------------------------------------------------------------------------------------
-GetNumberOfChars()
+GetNumberOfChars50(silent)
 {
 	gIgnoreKeyPress := true
-	rReturnValue := 0
 
 	tCharSlots := {1:{x:-45,y:100},2:{x:-45,y:155},3:{x:-45,y:210},4:{x:-45,y:270},5:{x:-45,y:330},6:{x:-45,y:380},7:{x:-45,y:450},8:{x:-45,y:510},9:{x:-45,y:560},10:{x:-45,y:610}}
 
-	loop 9
+	tIMode := mode
+
+	tCount := 0
+	tResult := IsWhiteUI(tCharSlots[1].x,tCharSlots[1].y)
+	while(tResult != true && tCount <= 50)
 	{
-		gosub CheckMode
-		if(Mode != 1)
+		Send {Up}
+		sleep, 66
+		tResult := IsWhiteUI(tCharSlots[1].x,tCharSlots[1].y)
+		sleep, 10
+		tCount := tCount + 1
+		if((tCount / 10) - Ceil(tCount / 10) == 0)
 		{
-			break
+			mode := 1
+			WaitForX(1, 100)
+			mode := tIMode
 		}
+	}
+	if(tResult != true)
+	{
+		gIgnoreKeyPress := false
+		return 0
+	}
 
-		tmp := UiToScreenNEW(tCharSlots[A_Index].x,tCharSlots[A_Index].y)
-		MouseMove, tmp.X, tmp.Y, 0
-
-		WaitForX(1, 150)
-		tRGBColor := GetColorAtUiPos(tCharSlots[A_Index].x,tCharSlots[A_Index].y)
-		if (tRGBColor.r > 250 and tRGBColor.g > 250 and tRGBColor.b > 250)
+	tCount := 0
+	Send {Up}
+	sleep, 66
+	tResult := IsWhiteUI(tCharSlots[1].x,tCharSlots[1].y)
+	sleep, 10
+	tCount := tCount + 1
+	while(tResult != true)
+	{
+		Send {Up}
+		sleep, 66
+		tResult := IsWhiteUI(tCharSlots[1].x,tCharSlots[1].y)
+		sleep, 10
+		tCount := tCount + 1
+		if((tCount / 10) - Ceil(tCount / 10) == 0)
 		{
-			rReturnValue := rReturnValue + 1
-		}
-		else
-		{
-			gIgnoreKeyPress := false
-			return rReturnValue
+			mode := 1
+			WaitForX(1, 100)
+			mode := tIMode
 		}
 	}
 
+	if(silent != true)
+	{
+		PlayUtterance(1)
+		sleep 600
+		PlayUtterance("selected")
+		sleep 1000
+	}
+
 	gIgnoreKeyPress := false
-	return rReturnValue
+	return tCount
+}
+IsWhiteUI(x, y)
+{
+	tRGBColor := GetColorAtUiPos(x, y)
+	if (tRGBColor.r > 250 and tRGBColor.g > 250 and tRGBColor.b > 250)
+	{
+		return true
+	}
+	return false
 }
 
 ;------------------------------------------------------------------------------------------
@@ -1715,9 +1781,49 @@ GetColorAtUiPos(x, y)
 ;------------------------------------------------------------------------------------------
 gMainMenuchilds1ChildsXGenericAction(this, charNumber) ;unfortunately this ugly helper is required as ahk can't directly assign funcs to variables/objects :(
 {
-	tmp := UiToScreenNEW(gCharUIPositions[charNumber].x, gCharUIPositions[charNumber].y)
-	MouseMove, tmp.X, tmp.Y, 0
-	Send {Click}
+	gIgnoreKeyPress := true
+
+	tCharSlots := {1:{x:-45,y:100},2:{x:-45,y:155},3:{x:-45,y:210},4:{x:-45,y:270},5:{x:-45,y:330},6:{x:-45,y:380},7:{x:-45,y:450},8:{x:-45,y:510},9:{x:-45,y:560},10:{x:-45,y:610}}
+
+	tIMode := mode
+
+	tCount := 0
+	tResult := IsWhiteUI(tCharSlots[1].x,tCharSlots[1].y)
+	while(tResult != true && tCount <= 50)
+	{
+		Send {Up}
+		sleep, 66
+		tResult := IsWhiteUI(tCharSlots[1].x,tCharSlots[1].y)
+		sleep, 10
+		tCount := tCount + 1
+		if((tCount / 10) - Ceil(tCount / 10) == 0)
+		{
+			mode := 1
+			WaitForX(1, 100)
+			mode := tIMode
+		}
+	}
+	if(tResult != true)
+	{
+		gIgnoreKeyPress := false
+		return 0
+	}
+
+	tCount := 0
+	sleep, 66
+	Loop % (charNumber - 1)
+	{
+		Send {Down}
+		sleep, 66
+		if((tCount / 10) - Ceil(tCount / 10) == 0)
+		{
+			mode := 1
+			WaitForX(1, 100)
+			mode := tIMode
+		}
+	}
+
+	gIgnoreKeyPress := false
 
 	PlayUtterance(charNumber)
 	sleep 600
@@ -1729,9 +1835,7 @@ gMainMenuchilds1ChildsXGenericAction(this, charNumber) ;unfortunately this ugly 
 UpdateCharacterMenu()
 {
 	WaitForX(1, 100)
-
-	gNumberOfCharsOnCurrentRealm := GetNumberOfChars()
-
+	gNumberOfCharsOnCurrentRealm := GetNumberOfChars50(false)
 	tMainItemN := 1
 
 	gMainMenu.childs[tMainItemN].childs := []
@@ -1743,7 +1847,7 @@ UpdateCharacterMenu()
 	}
 	else
 	{
-		Loop, 9
+		Loop % gNumberOfCharsOnCurrentRealm
 		{
 			if(Mode != 1)
 			{
@@ -1816,13 +1920,14 @@ EnterCharacterNameHandler()
 			gEnterCharacterNameFlag := false
 			PlayUtterance("char_created")
 			sleep 1000
-			PlayUtterance("selected")
+			PlayUtterance(gNumberOfCharsOnCurrentRealm + 1)
 			sleep 600
 
 			tFoundSuccessOrFail := true
 			WaitForX(4, 500)
 
 			UpdateCharacterMenu()
+
 			gMainMenu.childs[2].onEnter()
 
 			gIgnoreKeyPress := false

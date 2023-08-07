@@ -41,6 +41,10 @@ Nach dem Einloggen schaltet das Skript automatisch auf "Spielen". Beim Ausloggen
 ----------------------------------------------------------------------------------------
 
 Veröffentlichungshinweise:
+	4.0
+		- Du kannst jetzt bis zu 50 Charaktere pro Server erstellen und auswählen.
+		- Neu erstellte Charaktere werden standardmäßig nicht ausgewählt. Nach der Charaktererstellung wird der erste Charakter ausgewählt. Du musst den neuen Charakter auswählen, um dich mit ihm einzuloggen.
+		- Beim Einloggen, Serverwechsel, Umschalten in den Login-Modus usw. wählt das Skript immer den ersten Charakter in deiner Liste aus. Unabhängig davon, welcher Charakter zuvor ausgewählt war.
 	3.14
 		- Bessere Erkennung und automatisches Wegklicken von "Veraltete Addons"-Warnung.
 	3.13
@@ -80,3 +84,4 @@ Veröffentlichungshinweise:
 		- Listen für US west, US east und EU Englisch mit neuen Server aktualisiert
 	3.0
 		- Erste Version für WotLK
+vicky
