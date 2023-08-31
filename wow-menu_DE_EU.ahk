@@ -159,45 +159,21 @@ AcceptContract()
 {
 	tmp := UiToScreenNEW(9999, 195)
 	MouseMove, tmp.X, tmp.Y, 0
-	sleep, 500
+	sleep, 2000
 	Loop 5
 		Click, WheelDown
 
-	sleep, 500
-	tmp := UiToScreenNEW(9950, 439)
-	MouseMove, tmp.X, tmp.Y, 0
-	sleep, 50
-	Send {Click}
-	sleep, 50
-	tmp := UiToScreenNEW(9950, 459)
-	MouseMove, tmp.X, tmp.Y, 0
-	sleep, 50
-	Send {Click}
-	sleep, 50
-	tmp := UiToScreenNEW(9950, 479)
-	MouseMove, tmp.X, tmp.Y, 0
-	sleep, 50
-	Send {Click}
-	sleep, 50
-	tmp := UiToScreenNEW(9950, 499)
-	MouseMove, tmp.X, tmp.Y, 0
-	sleep, 50
-	Send {Click}
-	sleep, 50
-	tmp := UiToScreenNEW(9950, 519)
-	MouseMove, tmp.X, tmp.Y, 0
-	sleep, 50
-	Send {Click}
-	sleep, 50
-	tmp := UiToScreenNEW(9950, 539)
-	MouseMove, tmp.X, tmp.Y, 0
-	sleep, 50
-	Send {Click}
-	sleep, 50
-	tmp := UiToScreenNEW(9950, 559)
-	MouseMove, tmp.X, tmp.Y, 0
-	sleep, 50
-	Send {Click}
+	sleep, 1000
+	ty := 439
+	Loop, 34
+	{
+		tmp := UiToScreenNEW(9950, ty)
+		MouseMove, tmp.X, tmp.Y, 0
+		WaitForX(1, 200)
+		Send {Click}
+		ty := ty + 3
+	}
+
 }
 
 ;------------------------------------------------------------------------------------------
@@ -2343,12 +2319,3 @@ DeleteCharacterNameHandler()
 		}
 	return
 #If
-/*
-Numpad1::
-		;tCount := 9
-		;MsgBox % ((tCount / 10) - Ceil(tCount / 10) == 0) == 0
-
-
-	MsgBox % GetNumberOfChars50(false)
-return
-*/

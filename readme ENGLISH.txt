@@ -45,6 +45,9 @@ After logging in, the script automatically switches to "Play" mode. When logging
 RELEASE NOTES
 
 Release notes:
+	4.1
+		- Again tried to fix the not working auto acceptance of the social contract. Script should auto accept the contract now. If not, I am officially out of ideas.
+
 	4.0
 		- You now can create and select up to 50 characters per server
 		- Newly created characters are not selected as default. After character creation the first character is selected. You need to select the new character to login with that character.

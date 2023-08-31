@@ -41,6 +41,9 @@ Nach dem Einloggen schaltet das Skript automatisch auf "Spielen". Beim Ausloggen
 ----------------------------------------------------------------------------------------
 
 Veröffentlichungshinweise:
+	4.1
+		- Again tried to fix the not working auto acceptance of the social contract. Script should auto accept the contract now. If not, I am officially out of ideas.
+
 	4.0
 		- Du kannst jetzt bis zu 50 Charaktere pro Server erstellen und auswählen.
 		- Neu erstellte Charaktere werden standardmäßig nicht ausgewählt. Nach der Charaktererstellung wird der erste Charakter ausgewählt. Du musst den neuen Charakter auswählen, um dich mit ihm einzuloggen.
