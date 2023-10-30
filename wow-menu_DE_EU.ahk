@@ -2296,6 +2296,7 @@ DeleteCharacterNameHandler()
 
 	;------------------------------------------------------------------------------------------
 	;view 5
+	/*
 	Numpad9::
 	i::
 		Send i
@@ -2318,4 +2319,5 @@ DeleteCharacterNameHandler()
 			}
 		}
 	return
+	*/
 #If

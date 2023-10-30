@@ -1,4 +1,4 @@
-## Interface: 30402
-## Title: wow menu 4.1
-## Version: 4.1
+## Interface: 30403
+## Title: wow menu 4.2
+## Version: 4.2
 ## X-Curse-Project-ID: 

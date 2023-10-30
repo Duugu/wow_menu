@@ -41,6 +41,8 @@ Nach dem Einloggen schaltet das Skript automatisch auf "Spielen". Beim Ausloggen
 ----------------------------------------------------------------------------------------
 
 Veröffentlichungshinweise:
+	4.2
+		- Bindungen für die Tasten I und Nummernblock 9 aus dem Skript entfernt (zum Beacon drehen), da die nicht mehr erforderlich sind.
 	4.1
 		- Again tried to fix the not working auto acceptance of the social contract. Script should auto accept the contract now. If not, I am officially out of ideas.
 

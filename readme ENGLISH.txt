@@ -1,3 +1,5 @@
+Version: 4.2
+
 IMPORTANT SET UP STEPS. DO THIS:
 1. Copy the folder "wow_menu" from the downloaded .zip file to some local location on your computer.
 2. Go to the folder "wow_menu" that you've just copied.
@@ -45,6 +47,9 @@ After logging in, the script automatically switches to "Play" mode. When logging
 RELEASE NOTES
 
 Release notes:
+	4.2
+		- Removed the bindings for the I and numpad 9 keys from the script (that was turn to beacon), as they are not longer required.
+
 	4.1
 		- Again tried to fix the not working auto acceptance of the social contract. Script should auto accept the contract now. If not, I am officially out of ideas.
 
